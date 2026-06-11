@@ -16,7 +16,7 @@ interface FeatureListProps {
 function CheckIcon() {
   return (
     <svg
-      className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+      className="h-4 w-4 text-primary"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -30,7 +30,7 @@ function CheckIcon() {
 function ShieldIcon() {
   return (
     <svg
-      className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+      className="h-4 w-4 text-primary"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -64,7 +64,9 @@ export default function FeatureList({
       <ul className={`space-y-5 ${title || subtitle ? "mt-6" : ""}`}>
         {features.map((feature) => (
           <li key={feature.title} className="flex gap-3">
-            <Icon />
+            <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10">
+              <Icon />
+            </div>
             <div>
               <h4 className="text-sm font-semibold text-foreground">
                 {feature.title}

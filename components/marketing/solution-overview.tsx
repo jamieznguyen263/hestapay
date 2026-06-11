@@ -45,7 +45,7 @@ const solutions = [
 
 export default function SolutionOverview() {
   return (
-    <SectionWrapper alternate>
+    <SectionWrapper alternate dense>
       <Container>
         <SectionHeading
           title="One platform for every payment workflow"
@@ -56,7 +56,7 @@ export default function SolutionOverview() {
           {solutions.map((solution) => (
             <div
               key={solution.title}
-              className="rounded-xl border border-border bg-background p-6"
+              className="rounded-xl border border-border bg-background p-6 shadow-sm transition-shadow hover:shadow-md hover:border-primary/20"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <solution.icon />

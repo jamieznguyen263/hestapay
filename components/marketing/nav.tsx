@@ -16,17 +16,18 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <Container>
-        <nav className="flex h-16 items-center justify-between">
+        <nav className="flex h-[72px] items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
-            className="text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors"
+            className="flex items-center gap-2 text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors"
           >
+            <span className="flex h-2 w-2 rounded-full bg-primary" />
             {BRAND.name}
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex lg:items-center lg:gap-8">
+          <div className="hidden lg:flex lg:items-center lg:gap-10">
             {navGroups.map((group) => (
               <NavDropdown
                 key={group.label}
@@ -38,7 +39,7 @@ export default function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-muted transition-colors hover:text-primary"
+                className="relative text-sm font-medium text-muted transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
               >
                 {item.label}
               </Link>

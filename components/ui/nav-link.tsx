@@ -142,7 +142,7 @@ export function NavDropdown({ label, items, className = "" }: NavDropdownProps) 
       {open && (
         /* Transparent hover bridge: pt-2 fills the dead zone without visible gap */
         <div className="absolute left-0 top-full z-50 pt-2">
-          <div className="w-56 rounded-xl border border-border bg-background p-2 shadow-lg">
+          <div className="w-56 rounded-2xl border border-border bg-background p-2 shadow-md">
             {items.map((item) => (
               <Link
                 key={item.href}

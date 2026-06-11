@@ -1,3 +1,5 @@
+export const SITE_URL = "https://hestapay.com";
+
 export const BRAND = {
   name: "HestaPay",
   tagline: "Payments built for local businesses.",

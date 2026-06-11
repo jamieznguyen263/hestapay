@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
-import { BRAND } from "@/lib/constants";
+import { BRAND, SITE_URL } from "@/lib/constants";
 
-export function createPageMetadata(title: string, description?: string): Metadata {
+function canonicalPath(path: string): string {
+  if (path === "/") return SITE_URL;
+  return `${SITE_URL}${path}`;
+}
+
+export function createPageMetadata(
+  title: string,
+  description?: string,
+  path?: string
+): Metadata {
+  const desc = description ?? BRAND.description;
+  const url = path ? canonicalPath(path) : undefined;
+
   return {
     title,
-    description: description ?? BRAND.description,
+    description: desc,
+    alternates: url ? { canonical: url } : undefined,
     openGraph: {
       title: `${title} | ${BRAND.name}`,
-      description: description ?? BRAND.description,
+      description: desc,
+      url,
     },
   };
 }
@@ -42,6 +56,8 @@ export const PAGE_TITLES: Record<string, string> = {
 };
 
 export const PAGE_DESCRIPTIONS: Record<string, string> = {
+  "/":
+    "HestaPay is a modern payment software platform for restaurants, nail salons, retail, and home services. Payment links, QR payments, and a unified merchant dashboard.",
   "/restaurants":
     "See how HestaPay helps restaurants streamline payments, orders, and customer checkout.",
   "/nail-salons":
@@ -67,11 +83,11 @@ export const PAGE_DESCRIPTIONS: Record<string, string> = {
   "/faq":
     "Find answers to common questions about HestaPay.",
   "/about":
-    "Our mission is to make payments simple for local businesses everywhere.",
+    "Building payment software for local businesses. HestaPay makes payment operations simpler and better aligned with real-world workflows.",
   "/contact":
-    "Get in touch with the HestaPay team.",
+    "Get in touch with the HestaPay team. Questions, partnerships, or just want to say hello.",
   "/resources":
-    "Guides, articles, and resources for growing your business with better payments.",
+    "Guides, workflow examples, and payment resources for restaurants, salons, retail, and home services.",
   "/privacy-policy":
     "How we handle and protect your data.",
   "/terms-of-service":

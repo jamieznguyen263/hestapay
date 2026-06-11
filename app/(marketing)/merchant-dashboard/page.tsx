@@ -8,7 +8,7 @@ import FeatureList from "@/components/marketing/feature-list";
 import Card from "@/components/ui/card";
 import PageFAQ from "@/components/marketing/page-faq";
 import CTASection from "@/components/marketing/cta-section";
-import Link from "next/link";
+import MockupFrame from "@/components/marketing/mockup-frame";
 
 export const metadata: Metadata = createPageMetadata(
   PAGE_TITLES["/merchant-dashboard"],
@@ -16,10 +16,10 @@ export const metadata: Metadata = createPageMetadata(
 );
 
 const metricCards = [
-  { label: "Today's revenue", value: "—" },
-  { label: "Transactions", value: "—" },
-  { label: "Avg. ticket", value: "—" },
-  { label: "Refund rate", value: "—" },
+  { label: "Today's revenue", value: "\u2014" },
+  { label: "Transactions", value: "\u2014" },
+  { label: "Avg. ticket", value: "\u2014" },
+  { label: "Refund rate", value: "\u2014" },
 ];
 
 const transactionFeatures = [
@@ -142,17 +142,56 @@ const faqs = [
   },
 ];
 
+/* Inline dashboard visual — derived from /mockups/dashboard-overview composition */
+function DashboardVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      {/* Top bar */}
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Dashboard</span>
+      </div>
+      {/* Metric cards row */}
+      <div className="grid grid-cols-4 gap-2">
+        {["Revenue", "Txns", "Avg", "Refund"].map((label) => (
+          <div key={label} className="rounded-lg border border-border bg-surface p-2">
+            <p className="text-[8px] text-muted uppercase">{label}</p>
+            <p className="mt-1 text-xs font-bold text-primary">{"\u2014"}</p>
+          </div>
+        ))}
+      </div>
+      {/* Chart area */}
+      <div className="flex items-end gap-1.5 h-16">
+        {[{ label: "M", h: 30 }, { label: "T", h: 55 }, { label: "W", h: 40 }, { label: "T", h: 70 }, { label: "F", h: 35 }, { label: "S", h: 60 }, { label: "S", h: 45 }].map((d) => (
+          <div key={d.label} className="flex-1 flex flex-col items-center gap-1">
+            <div className="w-full rounded-t bg-primary/15" style={{ height: `${d.h}%` }} />
+            <span className="text-[7px] text-muted">{d.label}</span>
+          </div>
+        ))}
+      </div>
+      {/* Table rows */}
+      <div className="space-y-1.5">
+        {["Card payment", "QR payment", "Payment link"].map((type) => (
+          <div key={type} className="flex items-center justify-between rounded-md border border-border bg-surface px-2.5 py-1.5">
+            <span className="text-[9px] text-foreground">{type}</span>
+            <span className="text-[9px] text-muted">{"\u2014"}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function MerchantDashboardPage() {
   return (
     <>
-      {/* 1. Hero */}
       <PageHero
         vertical="Merchant Dashboard"
         heading="One dashboard for every payment operation"
         subtitle="Track transactions, manage refunds, control staff access, and run reports — all from a single, modern interface. No separate processor logins required."
       />
 
-      {/* 2. Overview metrics */}
+      {/* Overview metrics */}
       <SectionWrapper>
         <Container>
           <SectionHeading
@@ -164,19 +203,15 @@ export default function MerchantDashboardPage() {
             {metricCards.map((metric) => (
               <Card key={metric.label}>
                 <p className="text-sm text-muted">{metric.label}</p>
-                <p className="mt-2 text-3xl font-bold text-muted">
-                  {metric.value}
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Live data appears here
-                </p>
+                <p className="mt-2 text-3xl font-bold text-muted">{metric.value}</p>
+                <p className="mt-1 text-xs text-muted">Live data appears here</p>
               </Card>
             ))}
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 3. Transactions and filters */}
+      {/* Transactions and filters */}
       <SectionWrapper alternate>
         <Container>
           <SectionHeading
@@ -185,31 +220,15 @@ export default function MerchantDashboardPage() {
             className="mx-auto text-center"
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-primary/40"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-                <p className="mt-4 text-sm text-primary font-medium">
-                  Transaction list with filters
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Dashboard overview">
+              <DashboardVisual />
+            </MockupFrame>
             <FeatureList features={transactionFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 4. Staff and location controls */}
+      {/* Staff and location controls */}
       <SectionWrapper>
         <Container>
           <SectionHeading
@@ -219,30 +238,14 @@ export default function MerchantDashboardPage() {
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={staffFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Staff and location management
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Staff management">
+              <DashboardVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 5. Refund / void visibility */}
+      {/* Refund / void visibility */}
       <SectionWrapper alternate>
         <Container>
           <SectionHeading
@@ -251,31 +254,27 @@ export default function MerchantDashboardPage() {
             className="mx-auto text-center"
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Refund management view
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
+            <MockupFrame label="Refund management">
+              <div className="p-4 space-y-3">
+                <div className="flex items-center gap-2 pb-2 border-b border-border">
+                  <span className="text-[10px] font-medium text-foreground">Refunds</span>
+                </div>
+                <div className="flex flex-col items-center justify-center py-6 text-center">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary/40">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <p className="mt-2 text-[10px] text-muted">No pending refunds</p>
+                </div>
               </div>
-            </div>
+            </MockupFrame>
             <FeatureList features={refundFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 6. Reporting / export visibility */}
+      {/* Reporting / export visibility */}
       <SectionWrapper>
         <Container>
           <SectionHeading
@@ -285,37 +284,26 @@ export default function MerchantDashboardPage() {
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={reportFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Reporting and export
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
+            <MockupFrame label="Reports">
+              <div className="p-4 space-y-3">
+                <div className="flex items-center gap-2 pb-2 border-b border-border">
+                  <span className="text-[10px] font-medium text-foreground">Reports</span>
+                </div>
+                <div className="space-y-2">
+                  {["Daily summary", "Weekly revenue", "Staff performance"].map((r) => (
+                    <div key={r} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+                      <span className="text-[9px] text-foreground">{r}</span>
+                      <span className="text-[9px] text-muted">Export</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 7. FAQ */}
-      <PageFAQ
-        context="Merchant Dashboard"
-        heading="Dashboard questions"
-        faqs={faqs}
-      />
-
-      {/* 8. Final CTA */}
+      <PageFAQ context="Merchant Dashboard" heading="Dashboard questions" faqs={faqs} />
       <CTASection variant="dashboard" />
     </>
   );

@@ -9,6 +9,7 @@ import StepFlow from "@/components/marketing/step-flow";
 import UseCaseCards from "@/components/marketing/use-case-cards";
 import PageFAQ from "@/components/marketing/page-faq";
 import CTASection from "@/components/marketing/cta-section";
+import MockupFrame from "@/components/marketing/mockup-frame";
 import Link from "next/link";
 
 export const metadata: Metadata = createPageMetadata(
@@ -20,7 +21,7 @@ const solveFeatures = [
   {
     title: "No terminal, no hardware, no code",
     description:
-      "Create a payment link from your dashboard or mobile device. Share it via text, email, or messaging app. The customer pays in seconds — no app download required.",
+      "Create a payment link from your dashboard or mobile device. Share it via text, email, or messaging app. The customer pays in seconds - no app download required.",
   },
   {
     title: "Collect payments remotely",
@@ -30,7 +31,7 @@ const solveFeatures = [
   {
     title: "Reduce manual payment admin",
     description:
-      "Stop reading card numbers over the phone, chasing invoices, or manually logging who paid. Each link tracks its own status — paid, pending, or expired.",
+      "Stop reading card numbers over the phone, chasing invoices, or manually logging who paid. Each link tracks its own status - paid, pending, or expired.",
   },
   {
     title: "Works for every vertical",
@@ -50,7 +51,7 @@ const createSteps = [
     number: 2,
     title: "Share the link",
     description:
-      "Send via text, email, WhatsApp, or copy the link anywhere. The customer opens it on their phone — no app, no account.",
+      "Send via text, email, WhatsApp, or copy the link anywhere. The customer opens it on their phone - no app, no account.",
   },
   {
     number: 3,
@@ -80,7 +81,7 @@ const checkoutFeatures = [
   {
     title: "Optional custom message",
     description:
-      "Include a note with your payment link — the service provided, the invoice reference, or a thank-you message.",
+      "Include a note with your payment link - the service provided, the invoice reference, or a thank-you message.",
   },
   {
     title: "Branded with your business",
@@ -116,7 +117,7 @@ const faqs = [
   {
     question: "How do payment links work?",
     answer:
-      "You create a payment link from the HestaPay dashboard — set the amount and optionally a description. Share the link with your customer via text, email, or any messaging app. They open the link, enter their payment details on a secure checkout page, and the payment is processed. You see the confirmation in your dashboard instantly.",
+      "You create a payment link from the HestaPay dashboard - set the amount and optionally a description. Share the link with your customer via text, email, or any messaging app. They open the link, enter their payment details on a secure checkout page, and the payment is processed. You see the confirmation in your dashboard instantly.",
   },
   {
     question: "Do my customers need to download an app?",
@@ -136,7 +137,7 @@ const faqs = [
   {
     question: "Is there a limit on payment link amounts?",
     answer:
-      "Payment links work for any transaction amount. HestaPay is designed for local businesses — whether it's a small deposit or a large service invoice, payment links handle it.",
+      "Payment links work for any transaction amount. HestaPay is designed for local businesses - whether it's a small deposit or a large service invoice, payment links handle it.",
   },
 ];
 
@@ -200,7 +201,7 @@ const useCases = [
   {
     title: "SMS and email pay",
     description:
-      "Send payment links via text or email. Customers pay from their phone in seconds — no app, no login.",
+      "Send payment links via text or email. Customers pay from their phone in seconds - no app, no login.",
     icon: ShareIcon,
   },
 ];
@@ -208,14 +209,13 @@ const useCases = [
 export default function PaymentLinksPage() {
   return (
     <>
-      {/* 1. Hero */}
       <PageHero
         vertical="Payment Links"
         heading="Create and share payment links in seconds"
         subtitle="Collect deposits, invoices, and remote payments without a terminal, app, or code. Send a link. Get paid."
       />
 
-      {/* 2. What payment links solve */}
+      {/* What payment links solve */}
       <SectionWrapper>
         <Container>
           <SectionHeading
@@ -225,30 +225,14 @@ export default function PaymentLinksPage() {
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={solveFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-primary/40"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-                <p className="mt-4 text-sm text-primary font-medium">
-                  Payment link creation
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Payment link creation">
+              <LinkCreationVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 3. Use cases */}
+      {/* Use cases */}
       <SectionWrapper alternate>
         <Container>
           <SectionHeading
@@ -262,7 +246,7 @@ export default function PaymentLinksPage() {
         </Container>
       </SectionWrapper>
 
-      {/* 4. Create link workflow */}
+      {/* Create link workflow */}
       <SectionWrapper>
         <Container>
           <SectionHeading
@@ -278,46 +262,30 @@ export default function PaymentLinksPage() {
               href="/merchant-dashboard"
               className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
             >
-              Explore the Dashboard →
+              Explore the Dashboard {"->"}
             </Link>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 5. Customer checkout experience */}
+      {/* Customer checkout experience */}
       <SectionWrapper alternate>
         <Container>
           <SectionHeading
             title="A checkout experience your customers will trust"
-            subtitle="Clean, simple, and secure — the payment page your customers see when they open your link."
+            subtitle="Clean, simple, and secure - the payment page your customers see when they open your link."
             className="mx-auto text-center"
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Customer payment link checkout
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Customer checkout">
+              <CheckoutVisual />
+            </MockupFrame>
             <FeatureList features={checkoutFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 6. Track payment status */}
+      {/* Track payment status */}
       <SectionWrapper>
         <Container>
           <SectionHeading
@@ -327,38 +295,104 @@ export default function PaymentLinksPage() {
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={trackFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Payment status dashboard
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Payment tracking">
+              <StatusVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 7. FAQ */}
       <PageFAQ
         context="Payment Links"
         heading="Payment link questions"
         faqs={faqs}
       />
-
-      {/* 8. Final CTA */}
       <CTASection variant="paymentLinks" />
     </>
+  );
+}
+
+function LinkCreationVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Create Link</span>
+      </div>
+      <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
+        <p className="text-[8px] text-muted uppercase">Amount</p>
+        <div className="flex items-center gap-1 text-sm font-bold text-foreground">
+          <span className="text-muted">$</span>
+          {"\u2014"}
+        </div>
+        <div className="flex gap-2">
+          {["Copy link", "SMS", "Email", "QR"].map((opt) => (
+            <div key={opt} className="flex-1 rounded-md border border-border bg-background p-1.5 text-center text-[7px] text-muted">
+              {opt}
+            </div>
+          ))}
+        </div>
+        <div className="rounded-md bg-primary py-1.5 text-center text-[9px] font-medium text-white">
+          Create Link
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CheckoutVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">HestaPay</span>
+      </div>
+      <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
+        <p className="text-[8px] text-muted uppercase">Payment amount</p>
+        <p className="text-sm font-bold text-foreground">{"\u2014"}</p>
+        <div className="rounded-md border border-border bg-background p-2">
+          <p className="text-[7px] text-muted uppercase">Card number</p>
+          <div className="mt-1 h-2 w-3/4 rounded bg-muted/10" />
+        </div>
+        <div className="flex gap-2">
+          <div className="flex-1 rounded-md border border-border bg-background p-2">
+            <p className="text-[7px] text-muted uppercase">Expiry</p>
+            <div className="mt-1 h-2 w-1/2 rounded bg-muted/10" />
+          </div>
+          <div className="flex-1 rounded-md border border-border bg-background p-2">
+            <p className="text-[7px] text-muted uppercase">CVC</p>
+            <div className="mt-1 h-2 w-1/3 rounded bg-muted/10" />
+          </div>
+        </div>
+        <div className="rounded-md bg-primary py-2 text-center text-[9px] font-medium text-white">
+          Pay {"\u2014"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatusVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="text-[10px] font-medium text-foreground">Links</span>
+      </div>
+      <div className="space-y-2">
+        {[
+          { label: "Payment link", status: "Paid" },
+          { label: "Payment link", status: "Pending" },
+          { label: "Payment link", status: "Expired" },
+        ].map((link) => (
+          <div key={link.label + link.status} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+            <div className="flex items-center gap-2">
+              <div className="flex h-1.5 w-1.5 rounded-full bg-muted" />
+              <span className="text-[9px] text-foreground">{link.label}</span>
+            </div>
+            <span className="text-[9px] text-muted">{link.status}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

@@ -20,7 +20,7 @@ const whyFeatures = [
   {
     title: "Designed for fast, low-friction checkout",
     description:
-      "QR payments let customers scan and pay in seconds - no terminal, no card swipe, no app download. Designed to reduce checkout friction without extra hardware.",
+      "QR payments let customers scan and pay in seconds &mdash; no terminal, no card swipe, no app download. Designed to reduce checkout friction without extra hardware.",
   },
   {
     title: "Works with the devices you already have",
@@ -30,7 +30,7 @@ const whyFeatures = [
   {
     title: "Scan, pay, and get a receipt in one flow",
     description:
-      "Customers scan the QR code, see the payment amount, add a tip, and receive a digital receipt - all in their phone browser. No separate steps, no friction.",
+      "Customers scan the QR code, see the payment amount, add a tip, and receive a digital receipt &mdash; all in their phone browser. No separate steps, no friction.",
   },
   {
     title: "Real-time confirmation",
@@ -65,7 +65,7 @@ const customerSteps = [
     number: 1,
     title: "Scan with your phone",
     description:
-      "Point your phone camera at the QR code. Tap the notification - no app to download, no account to create.",
+      "Point your phone camera at the QR code. Tap the notification &mdash; no app to download, no account to create.",
   },
   {
     number: 2,
@@ -108,7 +108,7 @@ const faqs = [
   {
     question: "How do QR payments work?",
     answer:
-      "A business displays a QR code - on a table tent, at the counter, or on a screen. The customer scans it with their phone camera, sees the payment amount, adds a tip, and completes the transaction in their browser. Payment confirmation appears instantly in the staff app and dashboard.",
+      "A business displays a QR code &mdash; on a table tent, at the counter, or on a screen. The customer scans it with their phone camera, sees the payment amount, adds a tip, and completes the transaction in their browser. Payment confirmation appears instantly in the staff app and dashboard.",
   },
   {
     question: "Do customers need to download an app?",
@@ -192,7 +192,7 @@ const useCases = [
   {
     title: "Home Services",
     description:
-      "Include a QR code on invoices or at the job site. Customers scan and pay before you leave - no invoice chasing.",
+      "Include a QR code on invoices or at the job site. Customers scan and pay before you leave &mdash; no invoice chasing.",
     href: "/home-services",
     linkLabel: "See for home services",
     icon: HomeIcon,
@@ -205,7 +205,7 @@ export default function QRPaymentsPage() {
       <PageHero
         vertical="QR Payments"
         heading="Accept touch-free QR payments anywhere"
-        subtitle="Reduce checkout friction without extra hardware. Customers scan, pay, and receive a receipt - all from their phone."
+        subtitle="Reduce checkout friction without extra hardware. Customers scan, pay, and receive a receipt &mdash; all from their phone."
       />
 
       {/* Why QR payments */}
@@ -213,12 +213,12 @@ export default function QRPaymentsPage() {
         <Container>
           <SectionHeading
             title="QR payments built for local business speed"
-            subtitle="Faster than manual card entry, more flexible than fixed terminals. QR payments meet customers where they are - at the table, at the counter, on the go."
-            className="mx-auto text-center"
+            subtitle="Faster than manual card entry, more flexible than fixed terminals. QR payments meet customers where they are &mdash; at the table, at the counter, on the go."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={whyFeatures} />
-            <MockupFrame label="QR payment flow">
+            <MockupFrame label="QR payment flow" accent>
               <QRPaymentVisual />
             </MockupFrame>
           </div>
@@ -231,7 +231,7 @@ export default function QRPaymentsPage() {
           <SectionHeading
             title="How staff use QR payments"
             subtitle="Simple, fast, and integrated into the HestaPay staff app."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12">
             <StepFlow steps={staffSteps} />
@@ -240,12 +240,12 @@ export default function QRPaymentsPage() {
       </SectionWrapper>
 
       {/* Customer flow */}
-      <SectionWrapper>
+      <SectionWrapper ambient>
         <Container>
           <SectionHeading
             title="What your customers experience"
             subtitle="A clean, three-step flow that feels natural and takes seconds."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12">
             <StepFlow steps={customerSteps} />
@@ -259,7 +259,7 @@ export default function QRPaymentsPage() {
           <SectionHeading
             title="Tips, receipts, and transaction visibility"
             subtitle="Every QR payment includes automatic tip tracking, digital receipts, and real-time visibility for staff and managers."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <MockupFrame label="Customer receipt">
@@ -271,12 +271,12 @@ export default function QRPaymentsPage() {
       </SectionWrapper>
 
       {/* Vertical use cases */}
-      <SectionWrapper>
+      <SectionWrapper ambient>
         <Container>
           <SectionHeading
             title="QR payments across every vertical"
-            subtitle="From table-side dining to in-home service payments - QR codes work wherever your customers are."
-            className="mx-auto text-center"
+            subtitle="From table-side dining to in-home service payments &mdash; QR codes work wherever your customers are."
+            centered
           />
           <div className="mt-12">
             <UseCaseCards useCases={useCases} />
@@ -294,7 +294,7 @@ function QRPaymentVisual() {
   return (
     <div className="p-4 space-y-3">
       <div className="flex items-center gap-2 pb-2 border-b border-border">
-        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
         <span className="text-[10px] font-medium text-foreground">QR Payment</span>
       </div>
       <div className="flex items-center gap-3">
@@ -351,7 +351,7 @@ function ReceiptVisual() {
           <span className="font-bold text-primary">{"\u2014"}</span>
         </div>
       </div>
-      <div className="flex items-center gap-2 rounded-md bg-primary/5 px-3 py-2">
+      <div className="flex items-center gap-2 rounded-md bg-accent-surface px-3 py-2">
         <svg className="h-3 w-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>

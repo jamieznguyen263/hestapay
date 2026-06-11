@@ -7,7 +7,7 @@ import SolutionOverview from "@/components/marketing/solution-overview";
 import BusinessTypeSelector from "@/components/marketing/business-type-selector";
 import HowItWorks from "@/components/marketing/how-it-works";
 import WorkflowShowcase from "@/components/marketing/workflow-showcase";
-import DashboardPreview from "@/components/marketing/dashboard-preview";
+import DashboardHeroScene from "@/components/marketing/dashboard-hero-scene";
 import SecuritySection from "@/components/marketing/security-section";
 import FAQPreview from "@/components/marketing/faq-preview";
 import CTASection from "@/components/marketing/cta-section";
@@ -18,12 +18,12 @@ const restaurantFeatures = [
   {
     title: "QR table payments",
     description:
-      "Guests scan, order, and pay from their phone. No app download required. Faster table turnover and higher tips.",
+      "Guests scan a QR code and pay from their phone. No app download required. Faster table turnover and higher tips.",
   },
   {
-    title: "Dine-in, takeout, and delivery",
+    title: "Dine-in and takeout payments",
     description:
-      "One system for all order types. Payment links for phone orders. QR codes at the table. Integrated delivery partner payouts.",
+      "One payment system for every way your guests pay. Payment links for phone orders. QR codes at the table. Accept payments however your guests order.",
   },
   {
     title: "Split payments and tipping",
@@ -31,17 +31,17 @@ const restaurantFeatures = [
       "Built-in support for bill splitting and digital tipping. Customers choose their tip percentage at checkout.",
   },
   {
-    title: "Kitchen display integration",
+    title: "Payment and order sync",
     description:
-      "Orders flow directly from payment to kitchen. Reduce errors and speed up service.",
+      "Payments connect to your existing order flow. Reduce manual reconciliation and speed up service.",
   },
 ];
 
 const salonFeatures = [
   {
-    title: "Booking and deposits",
+    title: "Deposits and prepayments",
     description:
-      "Accept deposits during online booking. Release or capture funds when the appointment is completed.",
+      "Accept deposits and prepayments from clients. Release or capture funds when the appointment is completed.",
   },
   {
     title: "Tipping at checkout",
@@ -51,12 +51,12 @@ const salonFeatures = [
   {
     title: "Service and product payments",
     description:
-      "Ring up services and retail products in a single transaction. Track product inventory alongside service revenue.",
+      "Ring up services and retail products in a single transaction. Keep service and product revenue on one dashboard.",
   },
   {
     title: "Client payment history",
     description:
-      "View past transactions, tips, and preferences for each client. Personalize service and streamline checkout.",
+      "View past transactions, tips, and payment preferences for each client. Personalize service and streamline checkout.",
   },
 ];
 
@@ -73,18 +73,18 @@ export default function HomePage() {
         vertical="Restaurants"
         exploreHref="/restaurants"
         heading="Built for restaurant workflows"
-        subtitle="From QR table ordering to delivery payouts — HestaPay matches how restaurants actually operate."
+        subtitle="From QR table payments to takeout orders -- HestaPay matches how restaurants actually accept payments."
         features={restaurantFeatures}
       />
       <WorkflowShowcase
         vertical="Nail Salons"
         exploreHref="/nail-salons"
         heading="Built for salon workflows"
-        subtitle="Booking deposits, tipping, and checkout — connected in one flow that salon staff and clients love."
+        subtitle="Deposits, tipping, and checkout -- connected in one payment flow that salon staff and clients love."
         features={salonFeatures}
         reverse
       />
-      <DashboardPreview />
+      <DashboardHeroScene />
       <SecuritySection />
       <FAQPreview />
       <CTASection />

@@ -21,7 +21,7 @@ const solveFeatures = [
   {
     title: "No terminal, no hardware, no code",
     description:
-      "Create a payment link from your dashboard or mobile device. Share it via text, email, or messaging app. The customer pays in seconds - no app download required.",
+      "Create a payment link from your dashboard or mobile device. Share it via text, email, or messaging app. The customer pays in seconds &mdash; no app download required.",
   },
   {
     title: "Collect payments remotely",
@@ -31,7 +31,7 @@ const solveFeatures = [
   {
     title: "Reduce manual payment admin",
     description:
-      "Stop reading card numbers over the phone, chasing invoices, or manually logging who paid. Each link tracks its own status - paid, pending, or expired.",
+      "Stop reading card numbers over the phone, chasing invoices, or manually logging who paid. Each link tracks its own status &mdash; paid, pending, or expired.",
   },
   {
     title: "Works for every vertical",
@@ -51,7 +51,7 @@ const createSteps = [
     number: 2,
     title: "Share the link",
     description:
-      "Send via text, email, WhatsApp, or copy the link anywhere. The customer opens it on their phone - no app, no account.",
+      "Send via text, email, WhatsApp, or copy the link anywhere. The customer opens it on their phone &mdash; no app, no account.",
   },
   {
     number: 3,
@@ -81,7 +81,7 @@ const checkoutFeatures = [
   {
     title: "Optional custom message",
     description:
-      "Include a note with your payment link - the service provided, the invoice reference, or a thank-you message.",
+      "Include a note with your payment link &mdash; the service provided, the invoice reference, or a thank-you message.",
   },
   {
     title: "Branded with your business",
@@ -117,7 +117,7 @@ const faqs = [
   {
     question: "How do payment links work?",
     answer:
-      "You create a payment link from the HestaPay dashboard - set the amount and optionally a description. Share the link with your customer via text, email, or any messaging app. They open the link, enter their payment details on a secure checkout page, and the payment is processed. You see the confirmation in your dashboard instantly.",
+      "You create a payment link from the HestaPay dashboard &mdash; set the amount and optionally a description. Share the link with your customer via text, email, or any messaging app. They open the link, enter their payment details on a secure checkout page, and the payment is processed. You see the confirmation in your dashboard instantly.",
   },
   {
     question: "Do my customers need to download an app?",
@@ -137,7 +137,7 @@ const faqs = [
   {
     question: "Is there a limit on payment link amounts?",
     answer:
-      "Payment links work for any transaction amount. HestaPay is designed for local businesses - whether it's a small deposit or a large service invoice, payment links handle it.",
+      "Payment links work for any transaction amount. HestaPay is designed for local businesses &mdash; whether it's a small deposit or a large service invoice, payment links handle it.",
   },
 ];
 
@@ -201,7 +201,7 @@ const useCases = [
   {
     title: "SMS and email pay",
     description:
-      "Send payment links via text or email. Customers pay from their phone in seconds - no app, no login.",
+      "Send payment links via text or email. Customers pay from their phone in seconds &mdash; no app, no login.",
     icon: ShareIcon,
   },
 ];
@@ -221,11 +221,11 @@ export default function PaymentLinksPage() {
           <SectionHeading
             title="Collect payments without being there"
             subtitle="Payment links replace manual card entry, phone calls, and invoice chasing with a simple link you can share anywhere."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={solveFeatures} />
-            <MockupFrame label="Payment link creation">
+            <MockupFrame label="Payment link creation" accent>
               <LinkCreationVisual />
             </MockupFrame>
           </div>
@@ -238,7 +238,7 @@ export default function PaymentLinksPage() {
           <SectionHeading
             title="One link, every use case"
             subtitle="Payment links work across industries and payment scenarios. Here's how different businesses use them."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12">
             <UseCaseCards useCases={useCases} />
@@ -247,12 +247,12 @@ export default function PaymentLinksPage() {
       </SectionWrapper>
 
       {/* Create link workflow */}
-      <SectionWrapper>
+      <SectionWrapper ambient>
         <Container>
           <SectionHeading
             title="How payment links work"
             subtitle="Four simple steps from creation to payment confirmation."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12">
             <StepFlow steps={createSteps} />
@@ -262,7 +262,7 @@ export default function PaymentLinksPage() {
               href="/merchant-dashboard"
               className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
             >
-              Explore the Dashboard {"->"}
+              Explore the Dashboard &rarr;
             </Link>
           </div>
         </Container>
@@ -273,11 +273,11 @@ export default function PaymentLinksPage() {
         <Container>
           <SectionHeading
             title="A checkout experience your customers will trust"
-            subtitle="Clean, simple, and secure - the payment page your customers see when they open your link."
-            className="mx-auto text-center"
+            subtitle="Clean, simple, and secure &mdash; the payment page your customers see when they open your link."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <MockupFrame label="Customer checkout">
+            <MockupFrame label="Customer checkout" accent>
               <CheckoutVisual />
             </MockupFrame>
             <FeatureList features={checkoutFeatures} />
@@ -286,12 +286,12 @@ export default function PaymentLinksPage() {
       </SectionWrapper>
 
       {/* Track payment status */}
-      <SectionWrapper>
+      <SectionWrapper ambient>
         <Container>
           <SectionHeading
             title="Know exactly what's been paid"
             subtitle="Track every payment link from creation to completion. No more chasing or guessing."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={trackFeatures} />
@@ -316,7 +316,7 @@ function LinkCreationVisual() {
   return (
     <div className="p-4 space-y-3">
       <div className="flex items-center gap-2 pb-2 border-b border-border">
-        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
         <span className="text-[10px] font-medium text-foreground">Create Link</span>
       </div>
       <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
@@ -344,7 +344,7 @@ function CheckoutVisual() {
   return (
     <div className="p-4 space-y-3">
       <div className="flex items-center gap-2 pb-2 border-b border-border">
-        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
         <span className="text-[10px] font-medium text-foreground">HestaPay</span>
       </div>
       <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
@@ -386,7 +386,7 @@ function StatusVisual() {
         ].map((link) => (
           <div key={link.label + link.status} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
             <div className="flex items-center gap-2">
-              <div className="flex h-1.5 w-1.5 rounded-full bg-muted" />
+              <span className="flex h-1.5 w-1.5 rounded-full bg-muted" />
               <span className="text-[9px] text-foreground">{link.label}</span>
             </div>
             <span className="text-[9px] text-muted">{link.status}</span>

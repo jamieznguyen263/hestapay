@@ -8,7 +8,7 @@ const steps = [
     number: 1,
     title: "Connect your payment infrastructure",
     description:
-      "HestaPay integrates with trusted payment partners. You keep your existing processor relationships — we add the software layer that makes them work together.",
+      "HestaPay integrates with trusted payment partners. You keep your existing processor relationships &mdash; we add the software layer that makes them work together.",
   },
   {
     number: 2,
@@ -37,12 +37,12 @@ export default function HowItWorks() {
         <SectionHeading
           title="How HestaPay works"
           subtitle="Four steps from setup to growth. HestaPay is the software and orchestration layer between your business and payment infrastructure."
-          className="mx-auto text-center"
+          centered
         />
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <div key={step.number} className="text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white text-lg font-bold">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary shadow-glow-sm text-white text-lg font-bold">
                 {step.number}
               </div>
               <h3 className="mt-5 text-base font-semibold text-foreground">
@@ -54,19 +54,19 @@ export default function HowItWorks() {
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center flex items-center justify-center gap-4">
           <Link
             href="/payment-links"
             className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
           >
-            Explore Payment Links →
+            Explore Payment Links &rarr;
           </Link>
-          <span className="mx-3 text-border">|</span>
+          <span className="text-border select-none">&middot;</span>
           <Link
             href="/qr-payments"
             className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
           >
-            See QR in Action →
+            See QR in Action &rarr;
           </Link>
         </div>
       </Container>

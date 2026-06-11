@@ -19,7 +19,7 @@ const verticals = [
   {
     title: "Retail",
     description:
-      "Accept in-store and online payments, track sales, and manage inventory integrations — all in one place.",
+      "Accept in-store and online payments, track sales, and manage inventory integrations &mdash; all in one place.",
     href: "/retail",
   },
   {
@@ -37,14 +37,14 @@ export default function BusinessTypeSelector() {
         <SectionHeading
           title="Choose your business type"
           subtitle="HestaPay is purpose-built for these industries. Select yours to see how we help."
-          className="mx-auto text-center"
+          centered
         />
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {verticals.map((vertical) => (
             <Link
               key={vertical.href}
               href={vertical.href}
-              className="group rounded-xl border border-border bg-background p-6 transition-shadow hover:shadow-md hover:border-primary/30"
+              className="group rounded-2xl border border-border bg-background p-6 shadow-card transition-all duration-200 hover:shadow-card-hover hover:border-accent-border hover:-translate-y-0.5"
             >
               <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
                 {vertical.title}
@@ -61,11 +61,7 @@ export default function BusinessTypeSelector() {
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </span>
             </Link>

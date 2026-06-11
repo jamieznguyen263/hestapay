@@ -10,6 +10,7 @@ import Link from "next/link";
 import SecuritySection from "@/components/marketing/security-section";
 import PageFAQ from "@/components/marketing/page-faq";
 import CTASection from "@/components/marketing/cta-section";
+import MockupFrame from "@/components/marketing/mockup-frame";
 
 export const metadata: Metadata = createPageMetadata(
   PAGE_TITLES["/nail-salons"],
@@ -20,12 +21,12 @@ const painPoints = [
   {
     title: "No-shows cost you real money",
     description:
-      "Every empty appointment slot is lost revenue. Without deposits, salons absorb the full cost of no-shows — and most payment systems don't solve this.",
+      "Every empty appointment slot is lost revenue. Without deposits, salons absorb the full cost of no-shows -- and most payment systems don't solve this.",
   },
   {
     title: "Deposit management is manual and messy",
     description:
-      "Collecting deposits over the phone, tracking who paid, refunding cancellations — it's time your front desk should spend on clients, not payment admin.",
+      "Collecting deposits over the phone, tracking who paid, refunding cancellations -- it's time your front desk should spend on clients, not payment admin.",
   },
   {
     title: "Commission tracking is complicated",
@@ -38,7 +39,7 @@ const depositFeatures = [
   {
     title: "Payment links for deposits",
     description:
-      "Send a payment link via text or email when a client books. They pay the deposit in seconds — no app, no phone call, no manual entry.",
+      "Send a payment link via text or email when a client books. They pay the deposit in seconds -- no app, no phone call, no manual entry.",
   },
   {
     title: "Automatic deposit capture",
@@ -53,7 +54,7 @@ const depositFeatures = [
   {
     title: "Flexible cancellation policies",
     description:
-      "Set your own cancellation windows and refund rules. Full refund, partial refund, or deposit forfeited — you decide what works for your salon.",
+      "Set your own cancellation windows and refund rules. Full refund, partial refund, or deposit forfeited -- you decide what works for your salon.",
   },
 ];
 
@@ -61,7 +62,7 @@ const checkoutFeatures = [
   {
     title: "Clean, modern checkout flow",
     description:
-      "Clients see services, products, and tip options on one screen. The experience matches the quality of your salon — not a clunky card terminal.",
+      "Clients see services, products, and tip options on one screen. The experience matches the quality of your salon -- not a clunky card terminal.",
   },
   {
     title: "Service and product bundling",
@@ -71,7 +72,7 @@ const checkoutFeatures = [
   {
     title: "Digital tipping made natural",
     description:
-      "Suggested tip percentages appear at checkout. Clients choose what feels right — no awkwardness, no math. Tips are tracked per staff member automatically.",
+      "Suggested tip percentages appear at checkout. Clients choose what feels right -- no awkwardness, no math. Tips are tracked per staff member automatically.",
   },
   {
     title: "Client payment history",
@@ -99,7 +100,7 @@ const commissionFeatures = [
   {
     title: "Payout-ready reports",
     description:
-      "Generate commission and tip reports ready for payroll. Export or integrate with your payroll system — no manual spreadsheet work.",
+      "Generate commission and tip reports ready for payroll. Export or integrate with your payroll system -- no manual spreadsheet work.",
   },
 ];
 
@@ -107,7 +108,7 @@ const multiLocationFeatures = [
   {
     title: "Unified dashboard across locations",
     description:
-      "See revenue, appointments, and staff performance across all your salon locations from one dashboard. No separate logins, no switching accounts.",
+      "See revenue and staff performance across all your salon locations from one dashboard. No separate logins, no switching accounts.",
   },
   {
     title: "Location-level performance",
@@ -120,9 +121,9 @@ const multiLocationFeatures = [
       "Track individual staff metrics even if they work across multiple locations. Commission and tip data follow the stylist, not the salon.",
   },
   {
-    title: "Consistent client experience",
+    title: "Consistent checkout experience",
     description:
-      "Payment and checkout experience is identical across all locations. Clients book, pay deposits, and check out the same way — no matter which location they visit.",
+      "Payment and checkout experience is identical across all locations. Clients pay deposits and check out the same way -- no matter which location they visit.",
   },
 ];
 
@@ -130,17 +131,17 @@ const faqs = [
   {
     question: "How do deposits work with HestaPay?",
     answer:
-      "When a client books, your booking system (or the HestaPay platform) sends them a payment link for the deposit. They pay in seconds. The deposit is held and applied to their total at checkout. If they cancel within your policy window, you can refund the deposit with one click.",
+      "When a client books through your existing scheduling tool, you send them a payment link for the deposit. They pay in seconds. The deposit is held and applied to their total at checkout. If they cancel within your policy window, you can refund the deposit with one click.",
   },
   {
     question: "Does HestaPay replace my booking software?",
     answer:
-      "No. HestaPay is a payment orchestration layer. It works alongside your booking platform to handle deposits, payments, and checkout. You keep your booking system — HestaPay connects the payment side.",
+      "No. HestaPay is a payment orchestration layer. It works alongside your existing scheduling tools to handle deposits, payments, and checkout. You keep your scheduling tools -- HestaPay connects the payment side.",
   },
   {
     question: "How are commissions calculated?",
     answer:
-      "You define commission rules by service and staff member — percentage-based or flat rate. HestaPay automatically calculates commissions from completed transactions. Staff see their earnings in real time, and you get payout-ready reports.",
+      "You define commission rules by service and staff member -- percentage-based or flat rate. HestaPay automatically calculates commissions from completed transactions. Staff see their earnings in real time, and you get payout-ready reports.",
   },
   {
     question: "Can staff see their commissions and tips?",
@@ -157,20 +158,19 @@ const faqs = [
 export default function NailSalonsPage() {
   return (
     <>
-      {/* 1. Hero */}
       <PageHero
         vertical="Nail Salons"
         heading="Payment software built for salon workflows"
-        subtitle="From booking deposits to commission tracking — HestaPay connects every payment touchpoint your salon relies on."
+        subtitle="From booking deposits to commission tracking -- HestaPay connects every payment touchpoint your salon relies on."
       />
 
-      {/* 2. No-show and deposit pain points */}
+      {/* Pain points */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="No-shows and manual deposits hurt your bottom line"
             subtitle="Salons lose thousands to missed appointments and spend hours managing payments manually."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {painPoints.map((point) => (
@@ -187,166 +187,204 @@ export default function NailSalonsPage() {
         </Container>
       </SectionWrapper>
 
-      {/* 3. Payment links for deposits */}
-      <SectionWrapper alternate>
+      {/* Payment links for deposits */}
+      <SectionWrapper alternate ambient>
         <Container>
           <SectionHeading
             title="Deposits that protect your revenue"
             subtitle="Payment links make deposits effortless for clients and automatic for your front desk."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
+            <MockupFrame label="Deposit payment link" accent>
+              <DepositLinkVisual />
+            </MockupFrame>
             <div>
-              <div className="rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-primary/40"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-                <p className="mt-4 text-sm text-primary font-medium">
-                  Deposit payment link
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-              <div className="mt-6 flex items-center justify-center gap-4">
+              <FeatureList features={depositFeatures} />
+              <div className="mt-6">
                 <Link
                   href="/payment-links"
-                  className="text-sm font-medium text-primary hover:underline"
+                  className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
                 >
-                  Explore Payment Links →
+                  Explore Payment Links &rarr;
                 </Link>
               </div>
             </div>
-            <FeatureList features={depositFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 4. Beautiful client checkout */}
+      {/* Beautiful client checkout */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="Checkout your clients deserve"
-            subtitle="A modern, elegant checkout experience that reflects the quality of your salon — not a clunky card terminal."
-            className="mx-auto text-center"
+            subtitle="A modern, elegant checkout experience that reflects the quality of your salon -- not a clunky card terminal."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={checkoutFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Client checkout experience
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Client checkout experience">
+              <SalonCheckoutVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 5. Staff/commission visibility */}
-      <SectionWrapper alternate>
+      {/* Staff/commission visibility */}
+      <SectionWrapper alternate ambient>
         <Container>
           <SectionHeading
             title="Commission visibility your staff will love"
-            subtitle="Real-time earnings tracking so your stylists always know where they stand — and you eliminate payroll calculation errors."
-            className="mx-auto text-center"
+            subtitle="Real-time earnings tracking so your stylists always know where they stand -- and you eliminate payroll calculation errors."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
+            <MockupFrame label="Staff commission view">
+              <CommissionVisual />
+            </MockupFrame>
             <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Staff commission view
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-              <div className="mt-6 text-center">
+              <FeatureList features={commissionFeatures} />
+              <div className="mt-6 text-center lg:text-left">
                 <Link
                   href="/merchant-dashboard"
-                  className="text-sm font-medium text-primary hover:underline"
+                  className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
                 >
-                  Explore the Dashboard →
+                  Explore the Dashboard &rarr;
                 </Link>
               </div>
             </div>
-            <FeatureList features={commissionFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 6. Multi-location salon visibility */}
+      {/* Multi-location salon visibility */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="Grow across locations without losing visibility"
-            subtitle="One dashboard for every salon. Compare performance, track staff across locations, and keep the client experience consistent."
-            className="mx-auto text-center"
+            subtitle="One dashboard for every salon. Compare performance, track staff across locations, and keep the checkout experience consistent."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={multiLocationFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Multi-location salon dashboard
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Multi-location salon dashboard">
+              <MultiLocationVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 7. Security/trust section */}
       <SecuritySection variant="salon" />
-
-      {/* 8. Salon FAQ preview */}
-      <PageFAQ
-        context="Nail Salons"
-        heading="Salon payment questions"
-        faqs={faqs}
-      />
-
-      {/* 9. Final CTA */}
+      <PageFAQ context="Nail Salons" heading="Salon payment questions" faqs={faqs} />
       <CTASection variant="salon" />
     </>
+  );
+}
+
+function DepositLinkVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Deposit Link</span>
+      </div>
+      <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
+        <div className="flex items-center justify-between">
+          <p className="text-[8px] text-muted uppercase">Appointment deposit</p>
+          <span className="text-[9px] text-primary font-medium">Pending</span>
+        </div>
+        <div className="flex items-center gap-1 text-sm font-bold text-foreground">
+          <span className="text-muted">$</span>
+          {"\u2014"}
+        </div>
+        <div className="flex gap-2">
+          {["Send via SMS", "Copy link"].map((opt) => (
+            <div key={opt} className="flex-1 rounded-md border border-border bg-background p-1.5 text-center text-[7px] text-muted">
+              {opt}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SalonCheckoutVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Checkout</span>
+      </div>
+      <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
+        <div className="space-y-1.5">
+          {["Gel manicure", "Cuticle oil"].map((item) => (
+            <div key={item} className="flex items-center justify-between text-[9px]">
+              <span className="text-foreground">{item}</span>
+              <span className="text-muted">{"\u2014"}</span>
+            </div>
+          ))}
+        </div>
+        <div className="border-t border-border pt-2 flex items-center justify-between text-[9px]">
+          <span className="font-medium text-foreground">Total</span>
+          <span className="font-bold text-primary">{"\u2014"}</span>
+        </div>
+        <div className="flex gap-2">
+          {["15%", "18%", "20%"].map((tip) => (
+            <span key={tip} className="rounded-md border border-border px-2 py-1 text-[8px] text-muted">{tip}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CommissionVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="text-[10px] font-medium text-foreground">My Earnings</span>
+      </div>
+      <div className="space-y-2">
+        {[
+          { service: "Gel set", commission: "\u2014" },
+          { service: "Pedicure", commission: "\u2014" },
+          { service: "Nail art", commission: "\u2014" },
+        ].map((item) => (
+          <div key={item.service} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+            <span className="text-[9px] text-foreground">{item.service}</span>
+            <span className="text-[9px] font-medium text-primary">{item.commission}</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border pt-2 flex items-center justify-between text-[9px]">
+        <span className="font-medium text-foreground">Today's total</span>
+        <span className="font-bold text-primary">{"\u2014"}</span>
+      </div>
+    </div>
+  );
+}
+
+function MultiLocationVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">All Locations</span>
+      </div>
+      <div className="space-y-2">
+        {["Downtown", "Midtown", "Uptown"].map((loc) => (
+          <div key={loc} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+            <span className="text-[9px] text-foreground">{loc}</span>
+            <span className="text-[9px] text-muted">{"\u2014"}</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border pt-2 flex items-center justify-between text-[9px]">
+        <span className="font-medium text-foreground">Total revenue</span>
+        <span className="font-bold text-primary">{"\u2014"}</span>
+      </div>
+    </div>
   );
 }

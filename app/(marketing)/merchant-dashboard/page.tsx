@@ -9,6 +9,7 @@ import Card from "@/components/ui/card";
 import PageFAQ from "@/components/marketing/page-faq";
 import CTASection from "@/components/marketing/cta-section";
 import MockupFrame from "@/components/marketing/mockup-frame";
+import AmbientDashboardScene from "@/components/marketing/ambient-dashboard-scene";
 
 export const metadata: Metadata = createPageMetadata(
   PAGE_TITLES["/merchant-dashboard"],
@@ -26,7 +27,7 @@ const transactionFeatures = [
   {
     title: "Unified transaction feed",
     description:
-      "See every payment — in-person, payment links, QR — in one chronological feed. No switching between systems or processor portals.",
+      "See every payment &mdash; in-person, payment links, QR &mdash; in one chronological feed. No switching between systems or processor portals.",
   },
   {
     title: "Powerful filters",
@@ -118,7 +119,7 @@ const faqs = [
   {
     question: "What can I do from the merchant dashboard?",
     answer:
-      "The merchant dashboard is your central hub for payment operations. View transactions, process refunds, manage staff access, run reports, and track performance across locations. Everything you need to manage payments — in one place.",
+      "The merchant dashboard is your central hub for payment operations. View transactions, process refunds, manage staff access, run reports, and track performance across locations. Everything you need to manage payments &mdash; in one place.",
   },
   {
     question: "Can multiple staff members use the dashboard?",
@@ -142,16 +143,13 @@ const faqs = [
   },
 ];
 
-/* Inline dashboard visual — derived from /mockups/dashboard-overview composition */
 function DashboardVisual() {
   return (
     <div className="p-4 space-y-3">
-      {/* Top bar */}
       <div className="flex items-center gap-2 pb-2 border-b border-border">
-        <div className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
         <span className="text-[10px] font-medium text-foreground">Dashboard</span>
       </div>
-      {/* Metric cards row */}
       <div className="grid grid-cols-4 gap-2">
         {["Revenue", "Txns", "Avg", "Refund"].map((label) => (
           <div key={label} className="rounded-lg border border-border bg-surface p-2">
@@ -160,7 +158,6 @@ function DashboardVisual() {
           </div>
         ))}
       </div>
-      {/* Chart area */}
       <div className="flex items-end gap-1.5 h-16">
         {[{ label: "M", h: 30 }, { label: "T", h: 55 }, { label: "W", h: 40 }, { label: "T", h: 70 }, { label: "F", h: 35 }, { label: "S", h: 60 }, { label: "S", h: 45 }].map((d) => (
           <div key={d.label} className="flex-1 flex flex-col items-center gap-1">
@@ -169,7 +166,6 @@ function DashboardVisual() {
           </div>
         ))}
       </div>
-      {/* Table rows */}
       <div className="space-y-1.5">
         {["Card payment", "QR payment", "Payment link"].map((type) => (
           <div key={type} className="flex items-center justify-between rounded-md border border-border bg-surface px-2.5 py-1.5">
@@ -188,7 +184,7 @@ export default function MerchantDashboardPage() {
       <PageHero
         vertical="Merchant Dashboard"
         heading="One dashboard for every payment operation"
-        subtitle="Track transactions, manage refunds, control staff access, and run reports — all from a single, modern interface. No separate processor logins required."
+        subtitle="Track transactions, manage refunds, control staff access, and run reports &mdash; all from a single, modern interface. No separate processor logins required."
       />
 
       {/* Overview metrics */}
@@ -197,7 +193,7 @@ export default function MerchantDashboardPage() {
           <SectionHeading
             title="Your business at a glance"
             subtitle="Key metrics surfaced as soon as you open the dashboard. Live data populates here once your account is connected."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {metricCards.map((metric) => (
@@ -212,17 +208,17 @@ export default function MerchantDashboardPage() {
       </SectionWrapper>
 
       {/* Transactions and filters */}
-      <SectionWrapper alternate>
+      <SectionWrapper alternate ambient>
         <Container>
           <SectionHeading
             title="Every transaction, easy to find"
             subtitle="A unified feed with powerful filters so you can find any payment in seconds."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <MockupFrame label="Dashboard overview">
-              <DashboardVisual />
-            </MockupFrame>
+            <div>
+              <AmbientDashboardScene />
+            </div>
             <FeatureList features={transactionFeatures} />
           </div>
         </Container>
@@ -234,7 +230,7 @@ export default function MerchantDashboardPage() {
           <SectionHeading
             title="Control who sees what"
             subtitle="Role-based access for staff, location-level controls for multi-location businesses. Security without complexity."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={staffFeatures} />
@@ -250,8 +246,8 @@ export default function MerchantDashboardPage() {
         <Container>
           <SectionHeading
             title="Refunds and voids, handled in one place"
-            subtitle="Process refunds, void pending transactions, and track disputes — all from the same dashboard where you view transactions."
-            className="mx-auto text-center"
+            subtitle="Process refunds, void pending transactions, and track disputes &mdash; all from the same dashboard where you view transactions."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <MockupFrame label="Refund management">
@@ -275,12 +271,12 @@ export default function MerchantDashboardPage() {
       </SectionWrapper>
 
       {/* Reporting / export visibility */}
-      <SectionWrapper>
+      <SectionWrapper ambient>
         <Container>
           <SectionHeading
             title="Reports that save you hours"
             subtitle="Pre-built reports for revenue, staff performance, and payment channels. Export to CSV or PDF for accounting and sharing."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={reportFeatures} />

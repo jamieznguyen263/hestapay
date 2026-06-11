@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { type ButtonHTMLAttributes, type AnchorHTMLAttributes } from "react";
 
-type ButtonVariant = "primary" | "outline";
+type ButtonVariant = "primary" | "outline" | "ghost";
 type ButtonSize = "base" | "lg";
 
 interface ButtonBase {
@@ -21,9 +21,11 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white hover:bg-primary-dark shadow-sm shadow-primary/25 hover:shadow-md hover:shadow-primary/20",
+    "bg-primary text-white hover:bg-primary-dark shadow-glow-sm hover:shadow-glow active:bg-primary-darker",
   outline:
-    "border border-border bg-transparent text-foreground hover:bg-surface hover:border-primary/30",
+    "border border-border bg-transparent text-foreground hover:bg-surface hover:border-accent-border",
+  ghost:
+    "bg-transparent text-muted hover:text-foreground hover:bg-surface",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -38,7 +40,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const classes = [
-    "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
+    "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
     variantClasses[variant],
     sizeClasses[size],
     className,

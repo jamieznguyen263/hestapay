@@ -7,6 +7,8 @@ interface SectionWrapperProps {
   alternate?: boolean;
   /** Tighter vertical spacing for denser sections */
   dense?: boolean;
+  /** Subtle ambient green glow */
+  ambient?: boolean;
 }
 
 export default function SectionWrapper({
@@ -14,10 +16,11 @@ export default function SectionWrapper({
   className = "",
   alternate = false,
   dense = false,
+  ambient = false,
 }: SectionWrapperProps) {
   return (
     <section
-      className={`${
+      className={`${ambient ? "ambient-glow" : ""} ${
         dense ? "py-12 lg:py-20" : "py-16 lg:py-24"
       } ${alternate ? "bg-surface" : ""} ${className}`}
     >

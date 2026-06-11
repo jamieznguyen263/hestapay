@@ -1,14 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand — premium fintech green */
+  /* Brand - premium fintech green */
   --color-primary: #10b981;
   --color-primary-light: #34d399;
+  --color-primary-lighter: #6ee7b7;
   --color-primary-dark: #059669;
+  --color-primary-darker: #047857;
 
-  /* Neutrals */
+  /* Neutrals - refined scale */
+  --color-neutral-0: #ffffff;
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
+  --color-neutral-150: #f0f0f0;
   --color-neutral-200: #e5e5e5;
   --color-neutral-300: #d4d4d4;
   --color-neutral-400: #a3a3a3;
@@ -19,31 +23,51 @@
   --color-neutral-900: #171717;
   --color-neutral-950: #0a0a0a;
 
-  /* Semantic surfaces */
+  /* Semantic surfaces - layered depth system */
   --color-background: #ffffff;
   --color-foreground: var(--color-neutral-900);
   --color-muted: var(--color-neutral-500);
+  --color-muted-soft: var(--color-neutral-400);
   --color-border: var(--color-neutral-200);
+  --color-border-light: var(--color-neutral-100);
   --color-surface: var(--color-neutral-50);
+  --color-surface-raised: var(--color-neutral-0);
+  --color-surface-overlay: var(--color-neutral-0);
+
+  /* Accent surfaces */
+  --color-accent-surface: rgb(16 185 129 / 0.04);
+  --color-accent-border: rgb(16 185 129 / 0.12);
+  --color-accent-glow: rgb(16 185 129 / 0.15);
 
   /* Typography */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   /* Section rhythm */
-  --spacing-section: 5rem;
+  --spacing-section: 6rem;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-glow: 0 0 24px 0 rgb(16 185 129 / 0.25);
+  /* Shadow system - diffuse, layered depth */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.03);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 12px 28px -4px rgb(0 0 0 / 0.08), 0 4px 10px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 40px -8px rgb(0 0 0 / 0.1), 0 8px 16px -8px rgb(0 0 0 / 0.06);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.03);
+  --shadow-card-hover: 0 4px 16px -4px rgb(0 0 0 / 0.08), 0 2px 6px -2px rgb(0 0 0 / 0.04);
+  --shadow-glow: 0 0 40px 0 rgb(16 185 129 / 0.12);
+  --shadow-glow-sm: 0 0 16px 0 rgb(16 185 129 / 0.1);
 
-  /* Radii */
+  /* Radii - refined */
+  --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  /* Transitions */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
 }
 
 @theme inline {
@@ -59,13 +83,32 @@
   --font-mono: var(--font-mono);
 }
 
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-neutral-950);
     --color-foreground: var(--color-neutral-50);
     --color-muted: var(--color-neutral-400);
+    --color-muted-soft: var(--color-neutral-500);
     --color-border: var(--color-neutral-800);
+    --color-border-light: var(--color-neutral-800);
     --color-surface: var(--color-neutral-900);
+    --color-surface-raised: var(--color-neutral-900);
+    --color-surface-overlay: var(--color-neutral-900);
+
+    --color-accent-surface: rgb(16 185 129 / 0.06);
+    --color-accent-border: rgb(16 185 129 / 0.15);
+    --color-accent-glow: rgb(16 185 129 / 0.2);
+
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.15);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 12px 28px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 40px -8px rgb(0 0 0 / 0.5);
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.2);
+    --shadow-card-hover: 0 4px 16px -4px rgb(0 0 0 / 0.4);
+    --shadow-glow: 0 0 40px 0 rgb(16 185 129 / 0.15);
+    --shadow-glow-sm: 0 0 16px 0 rgb(16 185 129 / 0.12);
   }
 }
 
@@ -75,4 +118,71 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+/* Subtle surface gradient utility */
+.surface-gradient {
+  background: linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 100%);
+}
+
+.surface-gradient-reverse {
+  background: linear-gradient(0deg, var(--color-background) 0%, var(--color-surface) 100%);
+}
+
+/* Ambient green glow - for hero/product sections */
+.ambient-glow {
+  position: relative;
+}
+.ambient-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgb(16 185 129 / 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Green accent dot (reusable) */
+.accent-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  flex-shrink: 0;
+}
+.accent-dot-sm {
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* Thin divider with green accent */
+.divider-accent {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent-border) 50%, transparent 100%);
+  border: none;
+}
+
+/* Subtle grid background pattern */
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Animated ambient pulse - for dashboard scenes */
+@keyframes ambient-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-ambient-pulse {
+  animation: ambient-pulse 4s ease-in-out infinite;
 }

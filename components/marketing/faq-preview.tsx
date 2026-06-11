@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "What is HestaPay?",
     answer:
-      "HestaPay is a payment software and orchestration platform for local businesses. It connects to trusted payment infrastructure partners and provides a unified layer for payment links, QR payments, and a merchant dashboard — purpose-built for restaurants, nail salons, retail, and home services.",
+      "HestaPay is a payment software and orchestration platform for local businesses. It connects to trusted payment infrastructure partners and provides a unified layer for payment links, QR payments, and a merchant dashboard &mdash; purpose-built for restaurants, nail salons, retail, and home services.",
   },
   {
     question: "Is HestaPay a payment processor?",
@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Which businesses is HestaPay built for?",
     answer:
-      "HestaPay is purpose-built for restaurants, nail salons, retail stores, and home services. Each vertical has dedicated workflows, features, and support — not a generic solution adapted after the fact.",
+      "HestaPay is purpose-built for restaurants, nail salons, retail stores, and home services. Each vertical has dedicated workflows, features, and support &mdash; not a generic solution adapted after the fact.",
   },
   {
     question: "How do I get started?",
@@ -43,17 +43,17 @@ export default function FAQPreview() {
         <SectionHeading
           title="Frequently asked questions"
           subtitle="Quick answers to common questions about HestaPay."
-          className="mx-auto text-center"
+          centered
         />
         <div className="mt-12 max-w-2xl mx-auto space-y-3">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="rounded-xl border border-border bg-background overflow-hidden"
+              className="rounded-2xl border border-border bg-background shadow-card overflow-hidden"
             >
               <button
                 type="button"
-                className="w-full flex items-center justify-between px-6 py-4 text-left"
+                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-surface/50 transition-colors"
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
@@ -62,8 +62,8 @@ export default function FAQPreview() {
                   {faq.question}
                 </span>
                 <svg
-                  className={`h-5 w-5 shrink-0 text-muted transition-transform ${
-                    openIndex === index ? "rotate-180" : ""
+                  className={`h-5 w-5 shrink-0 text-muted transition-transform duration-200 ${
+                    openIndex === index ? "rotate-180 text-primary" : ""
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -78,8 +78,8 @@ export default function FAQPreview() {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4">
-                  <p className="text-sm text-muted leading-relaxed">
+                <div className="px-6 pb-5">
+                  <p className="text-sm text-muted leading-relaxed border-t border-border pt-4">
                     {faq.answer}
                   </p>
                 </div>
@@ -92,7 +92,7 @@ export default function FAQPreview() {
             href="/faq"
             className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
           >
-            View all FAQ →
+            View all FAQ &rarr;
           </Link>
         </div>
       </Container>

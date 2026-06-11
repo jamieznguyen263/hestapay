@@ -25,28 +25,25 @@ export default function PageHero({
 }: PageHeroProps) {
   return (
     <section
-      className={`relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background ${
-        compact ? "py-12 lg:py-16" : "py-16 lg:py-24"
+      className={`relative overflow-hidden ${
+        compact ? "py-14 lg:py-20" : "py-20 lg:py-28"
       }`}
     >
-      {/* Subtle background accent — faint grid/surface detail on right side */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-[0.04]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
+      {/* Ambient glow */}
+      <div className="absolute inset-0 pointer-events-none ambient-glow" />
+
+      {/* Subtle grid accent */}
+      <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-[0.03] pointer-events-none bg-grid-subtle" />
 
       <Container>
         <div className="relative max-w-3xl">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wide">
+          {/* Eyebrow pill */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-surface px-3.5 py-1 text-sm font-semibold text-primary uppercase tracking-wider">
+            <span className="flex h-1 w-1 rounded-full bg-primary" />
             {vertical}
-          </p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+          </div>
+
+          <h1 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.12]">
             {heading}
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted leading-relaxed">

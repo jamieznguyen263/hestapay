@@ -10,6 +10,7 @@ import Link from "next/link";
 import SecuritySection from "@/components/marketing/security-section";
 import PageFAQ from "@/components/marketing/page-faq";
 import CTASection from "@/components/marketing/cta-section";
+import MockupFrame from "@/components/marketing/mockup-frame";
 
 export const metadata: Metadata = createPageMetadata(
   PAGE_TITLES["/restaurants"],
@@ -30,30 +31,30 @@ const painPoints = [
   {
     title: "Tip complexity",
     description:
-      "Digital tipping, cash tips, split checks — tracking and distributing tips accurately across shifts is a constant headache for managers and staff.",
+      "Digital tipping, cash tips, split checks -- tracking and distributing tips accurately across shifts is a constant headache for managers and staff.",
   },
 ];
 
 const qrFeatures = [
   {
-    title: "Scan, order, pay — no app needed",
+    title: "Scan and pay -- no app needed",
     description:
-      "Guests scan a QR code at the table, browse the menu, place their order, and pay — all from their phone browser. No download, no account creation.",
+      "Guests scan a QR code at the table and pay from their phone browser. No download, no account creation. Faster checkout for guests, less running cards for staff.",
   },
   {
     title: "Faster table turns",
     description:
-      "When guests control ordering and payment from their phone, tables turn faster. Staff focus on service, not running cards.",
+      "When guests can pay from their phone without waiting for a terminal, tables turn faster. Staff focus on hospitality, not payment logistics.",
   },
   {
-    title: "Automatic order routing",
+    title: "Connect to your existing order flow",
     description:
-      "Orders flow directly to the kitchen display or printer. Modify items, add notes, and handle special requests — all captured at the point of payment.",
+      "QR payments work alongside your current ordering setup. Payments captured at the table flow into your existing systems through the orchestration layer.",
   },
   {
-    title: "Built-in upselling",
+    title: "Smart tip prompts",
     description:
-      "Smart menu prompts suggest add-ons, sides, and drinks at the moment of ordering. Increase average check size without staff intervention.",
+      "Suggested tip percentages appear at the moment of payment. Guests choose what feels right -- no awkward manual entry, no math errors.",
   },
 ];
 
@@ -66,7 +67,7 @@ const tipFeatures = [
   {
     title: "Split payments made simple",
     description:
-      "Divide the bill evenly or by item. Each guest pays their share and tips individually — all in one flow.",
+      "Divide the bill evenly or by item. Each guest pays their share and tips individually -- all in one flow.",
   },
   {
     title: "Shift-based tip reporting",
@@ -92,14 +93,14 @@ const staffPWAFeatures = [
       "View tips earned during the current shift. Know exactly what you're taking home before clocking out.",
   },
   {
-    title: "Order notifications",
+    title: "Payment notifications",
     description:
-      "Get notified when QR orders come in. Accept, modify, or route orders to the kitchen instantly.",
+      "Get notified when QR payments come in. Know which tables have paid and which are still open -- instantly.",
   },
   {
     title: "Shift handover",
     description:
-      "Transfer tables and open orders between shifts. Incoming staff see exactly what's in progress.",
+      "Transfer tables and open payment status between shifts. Incoming staff see exactly what's in progress.",
   },
 ];
 
@@ -107,7 +108,7 @@ const managerFeatures = [
   {
     title: "Revenue dashboard",
     description:
-      "See sales by channel: dine-in, takeout, delivery, QR. Compare performance across shifts, days, and weeks.",
+      "See revenue by payment channel: dine-in, takeout, QR, and payment links. Compare performance across shifts, days, and weeks.",
   },
   {
     title: "Refund and dispute management",
@@ -117,12 +118,12 @@ const managerFeatures = [
   {
     title: "Staff performance insights",
     description:
-      "Track table turnover times, average check sizes, and tip metrics by staff member. Identify your top performers.",
+      "Track tips, transaction counts, and refund rates by staff member. Identify your top performers and coaching opportunities.",
   },
   {
-    title: "Menu performance analytics",
+    title: "Payment channel analytics",
     description:
-      "See which items drive the most revenue. Adjust menu strategy based on real payment data, not guesswork.",
+      "See which payment methods drive the most transactions. Adjust checkout strategy based on real payment data, not guesswork.",
   },
 ];
 
@@ -130,12 +131,12 @@ const faqs = [
   {
     question: "How do QR table payments work with HestaPay?",
     answer:
-      "You place a QR code on each table. Guests scan it with their phone camera, browse your menu, place orders, and pay — all in their browser. Orders route to your kitchen display or printer automatically. No app download required for guests.",
+      "You place a QR code on each table. Guests scan it with their phone camera and pay from their browser -- no app download required. Payment confirmation appears instantly for staff, and the transaction appears alongside all other payments in your dashboard.",
   },
   {
     question: "Does HestaPay replace my existing POS?",
     answer:
-      "HestaPay is a payment orchestration layer that works alongside your POS. It connects your POS, payment processing, online orders, and delivery platforms into one flow. You keep the tools you use — HestaPay makes them work together.",
+      "HestaPay is a payment orchestration layer that works alongside your POS. It connects your POS, payment processing, online orders, and delivery platforms into one payment flow. You keep the tools you use -- HestaPay handles the payment side.",
   },
   {
     question: "How does tipping work?",
@@ -150,27 +151,26 @@ const faqs = [
   {
     question: "Does HestaPay support delivery integrations?",
     answer:
-      "HestaPay is designed to integrate with delivery platforms, routing delivery orders and payouts through the same payment layer as dine-in and takeout. Specific integrations will be confirmed during early access.",
+      "HestaPay is designed to integrate with delivery platforms, routing delivery payments through the same payment layer as dine-in and takeout. Specific integrations will be confirmed during early access.",
   },
 ];
 
 export default function RestaurantsPage() {
   return (
     <>
-      {/* 1. Hero */}
       <PageHero
         vertical="Restaurants"
         heading="Payment software built for restaurant workflows"
-        subtitle="From table-side QR to staff tips — HestaPay brings ordering, payments, and reporting into one platform designed for how restaurants actually operate."
+        subtitle="From table-side QR to staff tips -- HestaPay brings payments and reporting into one orchestration layer designed for how restaurants actually operate."
       />
 
-      {/* 2. Restaurant pain points */}
+      {/* Pain points */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="Restaurant payments are more complex than a POS can handle"
             subtitle="Most payment systems weren't built for the pace and complexity of restaurant service."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {painPoints.map((point) => (
@@ -187,166 +187,200 @@ export default function RestaurantsPage() {
         </Container>
       </SectionWrapper>
 
-      {/* 3. Table-side QR workflow */}
-      <SectionWrapper alternate>
+      {/* Table-side QR workflow */}
+      <SectionWrapper alternate ambient>
         <Container>
           <SectionHeading
-            title="Table-side QR that guests love"
-            subtitle="Give guests control of ordering and payment from their phone. Your staff focus on hospitality, not running payments."
-            className="mx-auto text-center"
+            title="Table-side QR payments guests love"
+            subtitle="Give guests a fast, frictionless way to pay from their phone. Your staff focus on hospitality, not running payments."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
+            <MockupFrame label="Table QR payment flow" accent>
+              <QRTableVisual />
+            </MockupFrame>
             <div>
-              <div className="rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-primary/40"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2m0 0H8m0 0a5 5 0 01-5-5 5 5 0 015-5m5 0h2m-2 0V4m2 0v1m-8 7h2m-2 0V8m2 3h4m-2 0V8m2 3v3m-8-3V8m2 3v3" />
-                </svg>
-                <p className="mt-4 text-sm text-primary font-medium">
-                  Table QR payment flow
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-              <div className="mt-6 flex items-center justify-center gap-4">
+              <FeatureList features={qrFeatures} />
+              <div className="mt-6">
                 <Link
                   href="/qr-payments"
-                  className="text-sm font-medium text-primary hover:underline"
+                  className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
                 >
-                  See QR in Action →
+                  See QR in Action &rarr;
                 </Link>
               </div>
             </div>
-            <FeatureList features={qrFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 4. Tips and shift visibility */}
+      {/* Tips and shift visibility */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="Tips and shifts, handled"
-            subtitle="Digital tipping, split checks, and shift-based reporting — so tips are fast for guests and accurate for staff."
-            className="mx-auto text-center"
+            subtitle="Digital tipping, split checks, and shift-based reporting -- so tips are fast for guests and accurate for staff."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={tipFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Tip reporting dashboard
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Tip reporting dashboard">
+              <TipReportVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 5. Staff PWA section */}
+      {/* Staff PWA section */}
       <SectionWrapper alternate>
         <Container>
           <SectionHeading
             title="Staff app built for the floor"
-            subtitle="Give your team mobile tools for tables, tips, and shift management — no terminal required."
-            className="mx-auto text-center"
+            subtitle="Give your team mobile tools for tables, tips, and shift management -- no terminal required."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Staff PWA
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-            </div>
+            <MockupFrame label="Staff mobile app">
+              <StaffMobileVisual />
+            </MockupFrame>
             <FeatureList features={staffPWAFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 6. Manager dashboard section */}
-      <SectionWrapper>
+      {/* Manager dashboard section */}
+      <SectionWrapper ambient>
         <Container>
           <SectionHeading
             title="Manager dashboard for restaurant operators"
-            subtitle="Revenue insights, staff performance, and menu analytics — the visibility you need to run a better restaurant."
-            className="mx-auto text-center"
+            subtitle="Revenue insights, staff performance, and payment channel analytics -- the visibility you need to run a better restaurant."
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={managerFeatures} />
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg
-                  className="h-12 w-12 text-muted"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">
-                  Restaurant dashboard
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  Screenshot coming soon
-                </p>
-              </div>
-              <div className="mt-6 text-center">
-                <Link
-                  href="/merchant-dashboard"
-                  className="text-sm font-medium text-primary hover:underline"
-                >
-                  Explore the Dashboard →
-                </Link>
-              </div>
-            </div>
+            <MockupFrame label="Restaurant dashboard">
+              <RestaurantDashboardVisual />
+            </MockupFrame>
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 7. Security/trust section */}
       <SecuritySection variant="restaurant" />
-
-      {/* 8. Restaurant FAQ preview */}
-      <PageFAQ
-        context="Restaurants"
-        heading="Restaurant payment questions"
-        faqs={faqs}
-      />
-
-      {/* 9. Final CTA */}
+      <PageFAQ context="Restaurants" heading="Restaurant payment questions" faqs={faqs} />
       <CTASection variant="restaurant" />
     </>
+  );
+}
+
+function QRTableVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Table QR</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="grid grid-cols-5 gap-px shrink-0">
+          {[
+            [1,1,1,1,1],
+            [1,0,0,0,1],
+            [1,0,1,0,1],
+            [1,0,0,0,1],
+            [1,1,1,1,1],
+          ].map((row, ri) =>
+            row.map((cell, ci) => (
+              <div key={`${ri}-${ci}`} className="h-2 w-2 rounded-[1px]" style={{ backgroundColor: cell ? "var(--color-foreground)" : "transparent" }} />
+            ))
+          )}
+        </div>
+        <div className="flex-1 space-y-2">
+          <p className="text-[9px] text-foreground font-medium">Table 12</p>
+          <div className="rounded-md border border-border bg-surface p-2">
+            <p className="text-[8px] text-muted uppercase">Amount</p>
+            <p className="text-xs font-bold text-primary">{"\u2014"}</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-2">
+        {["15%", "18%", "20%"].map((tip) => (
+          <span key={tip} className="rounded-md border border-border px-2 py-1 text-[8px] text-muted">{tip}</span>
+        ))}
+      </div>
+      <div className="rounded-md bg-primary py-1.5 text-center text-[9px] font-medium text-white">
+        Pay {"\u2014"}
+      </div>
+    </div>
+  );
+}
+
+function TipReportVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="text-[10px] font-medium text-foreground">Tips</span>
+      </div>
+      <div className="space-y-2">
+        {["Alex", "Maria", "Jordan"].map((name) => (
+          <div key={name} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+            <span className="text-[9px] text-foreground">{name}</span>
+            <span className="text-[9px] font-medium text-primary">{"\u2014"}</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border pt-2 flex items-center justify-between text-[9px]">
+        <span className="font-medium text-foreground">Shift total</span>
+        <span className="font-bold text-primary">{"\u2014"}</span>
+      </div>
+    </div>
+  );
+}
+
+function StaffMobileVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Staff App</span>
+      </div>
+      <div className="rounded-lg border border-border bg-surface p-3 space-y-2">
+        <p className="text-[8px] text-muted uppercase">Assigned tables</p>
+        <div className="grid grid-cols-3 gap-1.5">
+          {["T12", "T13", "T14", "T15", "T16", "T17"].map((t) => (
+            <div key={t} className="rounded-md border border-border bg-background p-1.5 text-center text-[8px] text-foreground">{t}</div>
+          ))}
+        </div>
+        <div className="border-t border-border pt-2 flex items-center justify-between">
+          <span className="text-[8px] text-muted">Tips this shift</span>
+          <span className="text-[9px] font-bold text-primary">{"\u2014"}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RestaurantDashboardVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Dashboard</span>
+      </div>
+      <div className="grid grid-cols-4 gap-2">
+        {["Revenue", "Txns", "Tips", "Avg"].map((label) => (
+          <div key={label} className="rounded-lg border border-border bg-surface p-2">
+            <p className="text-[8px] text-muted uppercase">{label}</p>
+            <p className="mt-1 text-xs font-bold text-primary">{"\u2014"}</p>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-end gap-1.5 h-12">
+        {[{ h: 30 }, { h: 55 }, { h: 40 }, { h: 70 }, { h: 35 }, { h: 60 }, { h: 45 }].map((d, i) => (
+          <div key={i} className="flex-1">
+            <div className="w-full rounded-t bg-primary/10" style={{ height: `${d.h}%` }} />
+          </div>
+        ))}
+      </div>
+      <p className="text-center text-[8px] text-muted">Weekly trend {"\u2014"}</p>
+    </div>
   );
 }

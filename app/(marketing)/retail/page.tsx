@@ -10,6 +10,7 @@ import Link from "next/link";
 import SecuritySection from "@/components/marketing/security-section";
 import PageFAQ from "@/components/marketing/page-faq";
 import CTASection from "@/components/marketing/cta-section";
+import MockupFrame from "@/components/marketing/mockup-frame";
 
 export const metadata: Metadata = createPageMetadata(
   PAGE_TITLES["/retail"],
@@ -20,7 +21,7 @@ const painPoints = [
   {
     title: "Disconnected in-store and remote payments",
     description:
-      "Counter payments, phone orders, and online sales run on separate systems. Staff toggle between terminals and platforms — and reconciliation takes hours.",
+      "Counter payments, phone orders, and online sales run on separate systems. Staff toggle between terminals and platforms -- and reconciliation takes hours.",
   },
   {
     title: "Slow counter checkout",
@@ -30,7 +31,7 @@ const painPoints = [
   {
     title: "Returns and refunds are manual",
     description:
-      "Processing a return means switching to a processor portal, looking up the transaction, and manually issuing a refund — separate from your POS and reporting.",
+      "Processing a return means switching to a processor portal, looking up the transaction, and manually issuing a refund -- separate from your existing systems and reporting.",
   },
 ];
 
@@ -38,12 +39,12 @@ const paymentFeatures = [
   {
     title: "QR payments at the counter",
     description:
-      "Display a QR code at checkout. Customers scan and pay from their phone — designed for fast, low-friction counter service. No terminal handling required.",
+      "Display a QR code at checkout. Customers scan and pay from their phone -- designed for fast, low-friction counter service. No terminal handling required.",
   },
   {
     title: "Payment links for phone orders",
     description:
-      "When a customer calls to place an order, send a payment link via text. They pay in seconds — no card numbers read over the phone.",
+      "When a customer calls to place an order, send a payment link via text. They pay in seconds -- no card numbers read over the phone.",
   },
   {
     title: "Unified transaction visibility",
@@ -51,9 +52,9 @@ const paymentFeatures = [
       "See counter payments, phone orders, and payment links in one transaction feed. No separate reports for different payment channels.",
   },
   {
-    title: "Future POS-adjacent integrations",
+    title: "Connect to your existing tools",
     description:
-      "HestaPay is designed as a payment orchestration layer. As the platform grows, integrations with POS and inventory systems will connect payment data to the tools you already use.",
+      "HestaPay is a payment orchestration layer. It works alongside your current POS and inventory tools. Future integrations will deepen the connection as the platform grows.",
   },
 ];
 
@@ -71,7 +72,7 @@ const refundFeatures = [
   {
     title: "Void before settlement",
     description:
-      "Made a mistake on a counter transaction? Void it before settlement — directly from the dashboard. No phone calls to your processor.",
+      "Made a mistake on a counter transaction? Void it before settlement -- directly from the dashboard. No phone calls to your processor.",
   },
   {
     title: "Refund history and audit trail",
@@ -99,7 +100,7 @@ const multiLocationFeatures = [
   {
     title: "Consistent payment experience",
     description:
-      "Every location uses the same payment tools — QR codes, payment links, and checkout flow. Customers get the same experience no matter which store they visit.",
+      "Every location uses the same payment tools -- QR codes, payment links, and checkout flow. Customers get the same experience no matter which store they visit.",
   },
 ];
 
@@ -107,17 +108,17 @@ const faqs = [
   {
     question: "Does HestaPay work with my current POS?",
     answer:
-      "HestaPay is a payment orchestration layer. It works alongside your POS to manage payments, refunds, and reporting. Future integrations with POS and inventory platforms are planned as the product grows.",
+      "HestaPay is a payment orchestration layer. It works alongside your existing POS and inventory systems to manage payments, refunds, and reporting. Deeper integrations with POS and inventory platforms are planned as the product grows.",
   },
   {
     question: "How do QR payments work at the counter?",
     answer:
-      "Display a QR code at your checkout counter. Customers scan it with their phone, see the amount, and pay in seconds. Staff get instant payment confirmation — no terminal, no card handling.",
+      "Display a QR code at your checkout counter. Customers scan it with their phone, see the amount, and pay in seconds. Staff get instant payment confirmation -- no terminal, no card handling.",
   },
   {
     question: "Can I process refunds from the dashboard?",
     answer:
-      "Yes. Find any transaction in the dashboard click refund, and choose full or partial amount. The refund is processed through your payment infrastructure partner. The original transaction and refund are linked in your reporting.",
+      "Yes. Find any transaction in the dashboard, click refund, and choose full or partial amount. The refund is processed through your payment infrastructure partner. The original transaction and refund are linked in your reporting.",
   },
   {
     question: "Can I see payments across multiple store locations?",
@@ -127,27 +128,26 @@ const faqs = [
   {
     question: "How do payment links work for phone orders?",
     answer:
-      "Create a payment link from your dashboard — set the amount and an optional reference. Send it to the customer via text. They open the link on their phone and pay. You see the confirmation in your dashboard instantly.",
+      "Create a payment link from your dashboard -- set the amount and an optional reference. Send it to the customer via text. They open the link on their phone and pay. You see the confirmation in your dashboard instantly.",
   },
 ];
 
 export default function RetailPage() {
   return (
     <>
-      {/* 1. Hero */}
       <PageHero
         vertical="Retail"
         heading="Payment software built for retail stores"
-        subtitle="Unify counter checkout, phone orders, and payment links in one platform. Accept payments, process refunds, and manage multiple locations — without switching systems."
+        subtitle="Unify counter checkout, phone orders, and payment links in one platform. Accept payments, process refunds, and manage multiple locations -- without switching systems."
       />
 
-      {/* 2. Pain points */}
+      {/* Pain points */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="Retail payments shouldn't be this fragmented"
             subtitle="Counter terminals, phone orders, and returns each pull you into a different system. HestaPay brings them together."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {painPoints.map((point) => (
@@ -164,60 +164,50 @@ export default function RetailPage() {
         </Container>
       </SectionWrapper>
 
-      {/* 3. In-store QR / remote payment */}
-      <SectionWrapper alternate>
+      {/* In-store QR / remote payment */}
+      <SectionWrapper alternate ambient>
         <Container>
           <SectionHeading
             title="One system for counter and remote payments"
             subtitle="QR at the counter. Payment links for phone orders. One transaction feed for everything."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
+            <MockupFrame label="Counter QR payment" accent>
+              <CounterQRVisual />
+            </MockupFrame>
             <div>
-              <div className="rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg className="h-12 w-12 text-primary/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2m0 0H8m0 0a5 5 0 01-5-5 5 5 0 015-5m5 0h2m-2 0V4m2 0v1m-8 7h2m-2 0V8m2 3h4m-2 0V8m2 3v3m-8-3V8m2 3v3" />
-                </svg>
-                <p className="mt-4 text-sm text-primary font-medium">
-                  Counter QR payment
-                </p>
-                <p className="mt-1 text-xs text-muted">Screenshot coming soon</p>
-              </div>
-              <div className="mt-6 flex items-center justify-center gap-4">
-                <Link href="/qr-payments" className="text-sm font-medium text-primary hover:underline">
-                  See QR in Action →
+              <FeatureList features={paymentFeatures} />
+              <div className="mt-6 flex items-center gap-4">
+                <Link href="/qr-payments" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+                  See QR in Action &rarr;
                 </Link>
-                <Link href="/payment-links" className="text-sm font-medium text-primary hover:underline">
-                  Explore Payment Links →
+                <Link href="/payment-links" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+                  Explore Payment Links &rarr;
                 </Link>
               </div>
             </div>
-            <FeatureList features={paymentFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 4. Refund and return handling */}
+      {/* Refund and return handling */}
       <SectionWrapper>
         <Container>
           <SectionHeading
             title="Returns and refunds, handled in the same place"
             subtitle="Process refunds from the same dashboard where you view transactions. No switching to a processor portal."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
             <FeatureList features={refundFeatures} />
             <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg className="h-12 w-12 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">Refund management view</p>
-                <p className="mt-1 text-xs text-muted">Screenshot coming soon</p>
-              </div>
+              <MockupFrame label="Refund management view">
+                <RefundVisual />
+              </MockupFrame>
               <div className="mt-6 text-center">
-                <Link href="/merchant-dashboard" className="text-sm font-medium text-primary hover:underline">
-                  Explore the Dashboard →
+                <Link href="/merchant-dashboard" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+                  Explore the Dashboard &rarr;
                 </Link>
               </div>
             </div>
@@ -225,37 +215,101 @@ export default function RetailPage() {
         </Container>
       </SectionWrapper>
 
-      {/* 5. Multi-location visibility */}
-      <SectionWrapper alternate>
+      {/* Multi-location visibility */}
+      <SectionWrapper alternate ambient>
         <Container>
           <SectionHeading
             title="Multi-location payment visibility"
             subtitle="See payment data across all your stores. Compare performance, manage staff access, and keep the payment experience consistent."
-            className="mx-auto text-center"
+            centered
           />
           <div className="mt-12 grid gap-10 items-center lg:grid-cols-2">
-            <div>
-              <div className="rounded-xl border-2 border-dashed border-border bg-surface p-8 flex flex-col items-center justify-center text-center min-h-[300px]">
-                <svg className="h-12 w-12 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
-                </svg>
-                <p className="mt-4 text-sm text-muted font-medium">Multi-location retail dashboard</p>
-                <p className="mt-1 text-xs text-muted">Screenshot coming soon</p>
-              </div>
-            </div>
+            <MockupFrame label="Multi-location retail dashboard">
+              <MultiStoreVisual />
+            </MockupFrame>
             <FeatureList features={multiLocationFeatures} />
           </div>
         </Container>
       </SectionWrapper>
 
-      {/* 6. Security/trust */}
       <SecuritySection variant="default" />
-
-      {/* 7. FAQ */}
       <PageFAQ context="Retail" heading="Retail payment questions" faqs={faqs} />
-
-      {/* 8. Final CTA */}
       <CTASection variant="retail" />
     </>
+  );
+}
+
+function CounterQRVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">Counter QR</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="grid grid-cols-5 gap-px shrink-0">
+          {[
+            [1,1,1,1,1],
+            [1,0,0,0,1],
+            [1,0,1,0,1],
+            [1,0,0,0,1],
+            [1,1,1,1,1],
+          ].map((row, ri) =>
+            row.map((cell, ci) => (
+              <div key={`${ri}-${ci}`} className="h-2 w-2 rounded-[1px]" style={{ backgroundColor: cell ? "var(--color-foreground)" : "transparent" }} />
+            ))
+          )}
+        </div>
+        <div className="flex-1 rounded-md border border-border bg-surface p-2">
+          <p className="text-[8px] text-muted uppercase">Amount</p>
+          <p className="text-xs font-bold text-primary">{"\u2014"}</p>
+        </div>
+      </div>
+      <div className="text-center text-[8px] text-muted pt-1">Scan to pay -- no terminal needed</div>
+    </div>
+  );
+}
+
+function RefundVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="text-[10px] font-medium text-foreground">Refunds</span>
+      </div>
+      <div className="space-y-2">
+        {["Card payment", "Phone order", "QR payment"].map((tx) => (
+          <div key={tx} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+            <span className="text-[9px] text-foreground">{tx}</span>
+            <span className="text-[9px] text-primary font-medium">Refund</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border pt-2 text-center text-[8px] text-muted">
+        All refunds logged and linked to original transactions
+      </div>
+    </div>
+  );
+}
+
+function MultiStoreVisual() {
+  return (
+    <div className="p-4 space-y-3">
+      <div className="flex items-center gap-2 pb-2 border-b border-border">
+        <span className="flex h-2 w-2 rounded-full bg-primary" />
+        <span className="text-[10px] font-medium text-foreground">All Stores</span>
+      </div>
+      <div className="space-y-2">
+        {["Main Street", "Oak Avenue", "Pine Plaza"].map((store) => (
+          <div key={store} className="flex items-center justify-between rounded-md border border-border bg-surface px-3 py-2">
+            <span className="text-[9px] text-foreground">{store}</span>
+            <span className="text-[9px] text-muted">{"\u2014"}</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border pt-2 flex items-center justify-between text-[9px]">
+        <span className="font-medium text-foreground">Today's total</span>
+        <span className="font-bold text-primary">{"\u2014"}</span>
+      </div>
+    </div>
   );
 }

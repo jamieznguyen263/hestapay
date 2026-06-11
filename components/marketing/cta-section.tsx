@@ -14,7 +14,7 @@ interface CTASectionProps {
   variant?: "default" | "restaurant" | "salon" | "paymentLinks" | "qrPayments" | "dashboard" | "pricing" | "security" | "retail" | "homeServices" | "about";
 }
 
-const variantDefaults = {
+const variantDefaults: Record<Exclude<CTASectionProps["variant"], undefined>, { heading: string; subtitle: string }> = {
   default: {
     heading: "Ready to simplify your payments?",
     subtitle:
@@ -23,17 +23,17 @@ const variantDefaults = {
   restaurant: {
     heading: "Ready to simplify your restaurant payments?",
     subtitle:
-      "From table-side QR to staff tips — HestaPay brings your entire restaurant payment flow into one platform. Get early access and start shaping the future of restaurant payments.",
+      "From table-side QR to staff tips &mdash; HestaPay brings your entire restaurant payment flow into one platform. Get early access and start shaping the future of restaurant payments.",
   },
   salon: {
     heading: "Ready to simplify your salon payments?",
     subtitle:
-      "From booking deposits to commission tracking — HestaPay connects every payment touchpoint for your salon. Join early access and help us build the payment platform salons deserve.",
+      "From booking deposits to commission tracking &mdash; HestaPay connects every payment touchpoint for your salon. Join early access and help us build the payment platform salons deserve.",
   },
   paymentLinks: {
     heading: "Ready to simplify how you collect payments?",
     subtitle:
-      "Create and share payment links in seconds. Get early access to HestaPay and start collecting deposits, invoices, and remote payments — no code, no terminal required.",
+      "Create and share payment links in seconds. Get early access to HestaPay and start collecting deposits, invoices, and remote payments &mdash; no code, no terminal required.",
   },
   qrPayments: {
     heading: "Ready to bring QR payments to your business?",
@@ -43,7 +43,7 @@ const variantDefaults = {
   dashboard: {
     heading: "Ready to run your business from one dashboard?",
     subtitle:
-      "Track transactions, manage refunds, and view analytics — all in one place. Get early access to the HestaPay merchant dashboard.",
+      "Track transactions, manage refunds, and view analytics &mdash; all in one place. Get early access to the HestaPay merchant dashboard.",
   },
   pricing: {
     heading: "See how HestaPay fits your business",
@@ -58,7 +58,7 @@ const variantDefaults = {
   retail: {
     heading: "Ready to unify your retail payments?",
     subtitle:
-      "From counter checkout to phone orders — HestaPay connects in-store, online, and remote payments in one platform. Get early access and see how it works for your store.",
+      "From counter checkout to phone orders &mdash; HestaPay connects in-store, online, and remote payments in one platform. Get early access and see how it works for your store.",
   },
   homeServices: {
     heading: "Ready to get paid on-site, on time?",
@@ -84,12 +84,18 @@ export default function CTASection({
   const defaults = variantDefaults[variant];
 
   return (
-    <section className="py-16 lg:py-24 bg-primary/10">
-      <Container className="text-center">
+    <section className="relative py-20 lg:py-28 overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute inset-0 pointer-events-none ambient-glow" />
+
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 divider-accent" />
+
+      <Container className="text-center relative z-10">
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {heading ?? defaults.heading}
         </h2>
-        <p className="mt-4 max-w-xl mx-auto text-lg text-muted leading-relaxed">
+        <p className="mt-5 max-w-xl mx-auto text-lg text-muted leading-relaxed">
           {subtitle ?? defaults.subtitle}
         </p>
         <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
@@ -100,13 +106,14 @@ export default function CTASection({
             {secondaryLabel}
           </Button>
         </div>
-        <div className="mt-6 flex items-center justify-center gap-6 text-sm text-muted flex-wrap">
+        <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted flex-wrap">
           <Link
             href="/pricing"
             className="hover:text-primary transition-colors"
           >
             View Pricing
           </Link>
+          <span className="text-border select-none">&middot;</span>
           <Link
             href="/security"
             className="hover:text-primary transition-colors"

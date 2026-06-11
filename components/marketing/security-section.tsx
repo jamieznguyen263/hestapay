@@ -3,6 +3,19 @@ import Container from "@/components/ui/container";
 import SectionHeading from "@/components/ui/section-heading";
 import Link from "next/link";
 
+interface SecuritySectionProps {
+  /** Heading override — defaults to "Security by design" */
+  heading?: string;
+  /** Subtitle override */
+  subtitle?: string;
+  /** CTA text override */
+  ctaText?: string;
+  /** CTA href override */
+  ctaHref?: string;
+  /** Visual variant */
+  variant?: "default" | "restaurant" | "salon";
+}
+
 const principles = [
   {
     title: "Infrastructure isolation",
@@ -26,7 +39,33 @@ const principles = [
   },
 ];
 
-export default function SecuritySection() {
+const variantDefaults = {
+  default: {
+    heading: "Security by design",
+    subtitle:
+      "HestaPay is built with security and reliability as foundational principles — not afterthoughts.",
+  },
+  restaurant: {
+    heading: "Payments you can trust, service you can rely on",
+    subtitle:
+      "Restaurant operations can't afford downtime or security gaps. HestaPay is built to keep your payments running safely, shift after shift.",
+  },
+  salon: {
+    heading: "Secure payments your clients and staff can trust",
+    subtitle:
+      "From deposits to checkout, every transaction is handled with the security practices salons and their clients expect.",
+  },
+};
+
+export default function SecuritySection({
+  heading,
+  subtitle,
+  ctaText = "Learn more about Security →",
+  ctaHref = "/security",
+  variant = "default",
+}: SecuritySectionProps) {
+  const defaults = variantDefaults[variant];
+
   return (
     <SectionWrapper alternate>
       <Container>
@@ -34,8 +73,8 @@ export default function SecuritySection() {
           {/* Text column */}
           <div>
             <SectionHeading
-              title="Security by design"
-              subtitle="HestaPay is built with security and reliability as foundational principles — not afterthoughts."
+              title={heading ?? defaults.heading}
+              subtitle={subtitle ?? defaults.subtitle}
             />
             <ul className="mt-8 space-y-5">
               {principles.map((principle) => (
@@ -66,10 +105,10 @@ export default function SecuritySection() {
             </ul>
             <div className="mt-8">
               <Link
-                href="/security"
+                href={ctaHref}
                 className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
               >
-                Learn more about Security →
+                {ctaText}
               </Link>
             </div>
           </div>

@@ -7,25 +7,25 @@ const verticals = [
   {
     title: "Restaurants",
     description:
-      "Streamline dine-in, takeout, delivery, and QR table payments. Connect orders to payments in one flow.",
+      "QR table payments, digital tips, split checks, and unified reporting for dine-in and takeout.",
     href: "/restaurants",
   },
   {
     title: "Nail Salons",
     description:
-      "Manage bookings, deposits, tipping, and checkout with a payment platform designed for salon workflows.",
+      "Deposits via payment links, tipping at checkout, commission tracking, and client payment history.",
     href: "/nail-salons",
   },
   {
     title: "Retail",
     description:
-      "Accept in-store and online payments, track sales, and manage inventory integrations &mdash; all in one place.",
+      "Counter QR payments, payment links for phone orders, refund management, and multi-location visibility.",
     href: "/retail",
   },
   {
     title: "Home Services",
     description:
-      "Send payment links, accept on-site payments, and manage service invoices without the back-and-forth.",
+      "SMS payment links, on-site QR payments, field team payment tracking, and daily revenue visibility.",
     href: "/home-services",
   },
 ];
@@ -35,8 +35,8 @@ export default function BusinessTypeSelector() {
     <SectionWrapper>
       <Container>
         <SectionHeading
-          title="Choose your business type"
-          subtitle="HestaPay is purpose-built for these industries. Select yours to see how we help."
+          title="Built for how local businesses get paid"
+          subtitle="Every industry has its own payment flow. HestaPay adapts to yours."
           centered
         />
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

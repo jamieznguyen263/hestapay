@@ -2,22 +2,20 @@ import SectionWrapper from "@/components/marketing/section-wrapper";
 import Container from "@/components/ui/container";
 import SectionHeading from "@/components/ui/section-heading";
 
-/* Safe placeholder data -- all values use em dash */
-const EM = "\u2014";
-
+/* Sample review data -- curated product UI, not real metrics */
 const summaryCards = [
-  { label: "Today\u2019s revenue", value: EM },
-  { label: "Transactions", value: EM },
-  { label: "Avg. ticket", value: EM },
-  { label: "Refund rate", value: EM },
+  { label: "Today\u2019s revenue", value: "Receiving" },
+  { label: "Transactions", value: "40+" },
+  { label: "Avg. ticket", value: "~$90" },
+  { label: "Refund rate", value: "Low" },
 ] as const;
 
 const transactions = [
-  { type: "Card payment", amount: EM, status: "Completed" },
-  { type: "Payment link", amount: EM, status: "Pending" },
-  { type: "QR payment", amount: EM, status: "Completed" },
-  { type: "Refund", amount: EM, status: "Refunded" },
-  { type: "Card payment", amount: EM, status: "Completed" },
+  { type: "Card payment", amount: "$84", status: "Completed" },
+  { type: "Payment link", amount: "$126", status: "Pending" },
+  { type: "QR payment", amount: "$55", status: "Completed" },
+  { type: "Refund", amount: "$22", status: "Refunded" },
+  { type: "Card payment", amount: "$210", status: "Completed" },
 ] as const;
 
 const filters = ["All types", "All statuses", "Last 7 days"] as const;
@@ -102,13 +100,13 @@ function StatusChip({ status }: { status: string }) {
 }
 
 const chartBars = [
-  { label: "M", h: 30 },
-  { label: "T", h: 55 },
-  { label: "W", h: 40 },
-  { label: "T", h: 70 },
-  { label: "F", h: 35 },
-  { label: "S", h: 60 },
-  { label: "S", h: 45 },
+  { label: "M", h: 62 },
+  { label: "T", h: 88 },
+  { label: "W", h: 55 },
+  { label: "T", h: 95 },
+  { label: "F", h: 72 },
+  { label: "S", h: 48 },
+  { label: "S", h: 38 },
 ];
 
 export default function DashboardHeroScene() {
@@ -154,7 +152,6 @@ export default function DashboardHeroScene() {
   );
 }
 
-/* Premium static dashboard visual -- no cursor, ambient only */
 function DashboardVisual() {
   return (
     <div className="relative w-full select-none">
@@ -195,7 +192,6 @@ function DashboardVisual() {
                   <p className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-bold text-primary">
                     {card.value}
                   </p>
-                  <p className="mt-0.5 text-[8px] sm:text-[10px] text-muted">Preview</p>
                 </div>
               ))}
             </div>
@@ -221,7 +217,7 @@ function DashboardVisual() {
 
             {/* Chart + Side panel */}
             <div className="grid gap-3 lg:grid-cols-[1fr_180px]">
-              {/* Chart area -- recessed */}
+              {/* Chart area */}
               <div
                 className="rounded-xl sm:rounded-2xl border border-border bg-surface p-3 sm:p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_6px_-2px_rgba(0,0,0,0.04)]"
                 style={{ transform: "translateZ(-2px)" }}
@@ -249,9 +245,6 @@ function DashboardVisual() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-2 text-center text-[8px] sm:text-[10px] text-muted">
-                  Preview {EM} live chart data appears here
-                </p>
               </div>
 
               {/* Side panel */}

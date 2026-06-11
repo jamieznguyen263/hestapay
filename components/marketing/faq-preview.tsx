@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "What is HestaPay?",
     answer:
-      "HestaPay is a payment software and orchestration platform for local businesses. It connects to trusted payment infrastructure partners and provides a unified layer for payment links, QR payments, and a merchant dashboard &mdash; purpose-built for restaurants, nail salons, retail, and home services.",
+      "HestaPay is payment software and an orchestration layer for local businesses. It connects to trusted payment infrastructure partners and provides a unified layer for payment links, QR payments, and a merchant dashboard -- purpose-built for restaurants, nail salons, retail, and home services.",
   },
   {
     question: "Is HestaPay a payment processor?",
@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Which businesses is HestaPay built for?",
     answer:
-      "HestaPay is purpose-built for restaurants, nail salons, retail stores, and home services. Each vertical has dedicated workflows, features, and support &mdash; not a generic solution adapted after the fact.",
+      "HestaPay is purpose-built for restaurants, nail salons, retail stores, and home services. Each vertical has dedicated payment features and support -- not a generic solution adapted after the fact.",
   },
   {
     question: "How do I get started?",
@@ -90,9 +90,12 @@ export default function FAQPreview() {
         <div className="mt-8 text-center">
           <Link
             href="/faq"
-            className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
+            className="text-sm font-medium text-primary hover:text-primary-dark inline-flex items-center gap-1 group transition-colors duration-200"
           >
-            View all FAQ &rarr;
+            View all FAQ
+            <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </Container>

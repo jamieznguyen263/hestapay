@@ -8,7 +8,7 @@ const steps = [
     number: 1,
     title: "Connect your payment infrastructure",
     description:
-      "HestaPay integrates with trusted payment partners. You keep your existing processor relationships &mdash; we add the software layer that makes them work together.",
+      "HestaPay integrates with trusted payment infrastructure partners. You keep your existing processor relationships -- we add the software layer that makes them work together.",
   },
   {
     number: 2,
@@ -20,7 +20,7 @@ const steps = [
     number: 3,
     title: "Accept payments everywhere",
     description:
-      "In person, online, via payment links, or through QR codes. One platform handles every payment method your customers prefer.",
+      "In person, online, via payment links, or through QR codes. One dashboard handles every payment method your customers prefer.",
   },
   {
     number: 4,
@@ -57,16 +57,22 @@ export default function HowItWorks() {
         <div className="mt-12 text-center flex items-center justify-center gap-4">
           <Link
             href="/payment-links"
-            className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
+            className="text-sm font-medium text-primary hover:text-primary-dark inline-flex items-center gap-1 group transition-colors duration-200"
           >
-            Explore Payment Links &rarr;
+            Explore Payment Links
+            <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
           <span className="text-border select-none">&middot;</span>
           <Link
             href="/qr-payments"
-            className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
+            className="text-sm font-medium text-primary hover:text-primary-dark inline-flex items-center gap-1 group transition-colors duration-200"
           >
-            See QR in Action &rarr;
+            See QR in Action
+            <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </Container>

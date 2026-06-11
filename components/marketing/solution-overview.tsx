@@ -9,19 +9,19 @@ const solutions = [
   {
     title: "Unified payment acceptance",
     description:
-      "Accept payments in person, online, and via payment links &mdash; all through one platform. No more switching between systems.",
+      "Accept payments in person, via payment links, and through QR codes -- all from one dashboard. No more switching between systems.",
     icon: CheckIcon,
   },
   {
-    title: "Workflow orchestration",
+    title: "Payment orchestration",
     description:
-      "Connect orders, inventory, bookings, and payments into a single flow that matches how your business actually operates.",
+      "HestaPay sits between your business and trusted payment infrastructure. Route transactions, manage refunds, and connect payment data to the tools you already use.",
     icon: WorkflowIcon,
   },
   {
     title: "Payment Links",
     description:
-      "Create and share payment links in seconds. Send them via text, email, or messaging apps. No code, no integration required.",
+      "Create and share payment links in seconds. Send them via text, email, or messaging apps. No code, no terminal required.",
     icon: LinkIcon,
   },
   {
@@ -33,7 +33,7 @@ const solutions = [
   {
     title: "Merchant Dashboard",
     description:
-      "Track sales, manage refunds, view analytics, and run your business from a single, modern dashboard.",
+      "Track transactions, manage refunds, view analytics, and run payment operations from a single, modern dashboard.",
     icon: DashboardIcon,
   },
   {
@@ -49,8 +49,8 @@ export default function SolutionOverview() {
     <SectionWrapper alternate dense>
       <Container>
         <SectionHeading
-          title="One platform for every payment workflow"
-          subtitle="HestaPay replaces fragmented payment tools with a single, modern platform built specifically for local businesses."
+          title="Payment software built for how you work"
+          subtitle="HestaPay replaces fragmented payment tools with a single, modern dashboard built specifically for local businesses."
           centered
         />
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

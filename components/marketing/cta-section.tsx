@@ -23,17 +23,17 @@ const variantDefaults: Record<Exclude<CTASectionProps["variant"], undefined>, { 
   restaurant: {
     heading: "Ready to simplify your restaurant payments?",
     subtitle:
-      "From table-side QR to staff tips &mdash; HestaPay brings your entire restaurant payment flow into one platform. Get early access and start shaping the future of restaurant payments.",
+      "From table-side QR to staff tips -- HestaPay brings your restaurant payment flow into one dashboard. Get early access and start shaping the future of restaurant payments.",
   },
   salon: {
     heading: "Ready to simplify your salon payments?",
     subtitle:
-      "From booking deposits to commission tracking &mdash; HestaPay connects every payment touchpoint for your salon. Join early access and help us build the payment platform salons deserve.",
+      "From booking deposits to commission tracking -- HestaPay connects every payment touchpoint for your salon. Join early access and help us build the payment software salons deserve.",
   },
   paymentLinks: {
     heading: "Ready to simplify how you collect payments?",
     subtitle:
-      "Create and share payment links in seconds. Get early access to HestaPay and start collecting deposits, invoices, and remote payments &mdash; no code, no terminal required.",
+      "Create and share payment links in seconds. Get early access to HestaPay and start collecting deposits, invoices, and remote payments -- no code, no terminal required.",
   },
   qrPayments: {
     heading: "Ready to bring QR payments to your business?",
@@ -43,12 +43,12 @@ const variantDefaults: Record<Exclude<CTASectionProps["variant"], undefined>, { 
   dashboard: {
     heading: "Ready to run your business from one dashboard?",
     subtitle:
-      "Track transactions, manage refunds, and view analytics &mdash; all in one place. Get early access to the HestaPay merchant dashboard.",
+      "Track transactions, manage refunds, and view analytics -- all from one dashboard. Get early access to the HestaPay merchant dashboard.",
   },
   pricing: {
     heading: "See how HestaPay fits your business",
     subtitle:
-      "Platform pricing is confirmed during onboarding. Book a demo or join early access to discuss your setup and get a clear picture of costs.",
+      "Pricing is confirmed during onboarding. Book a demo or join early access to discuss your setup and get a clear picture of costs.",
   },
   security: {
     heading: "See how HestaPay keeps payments safe",
@@ -58,7 +58,7 @@ const variantDefaults: Record<Exclude<CTASectionProps["variant"], undefined>, { 
   retail: {
     heading: "Ready to unify your retail payments?",
     subtitle:
-      "From counter checkout to phone orders &mdash; HestaPay connects in-store, online, and remote payments in one platform. Get early access and see how it works for your store.",
+      "From counter checkout to phone orders -- HestaPay connects in-store and remote payments in one dashboard. Get early access and see how it works for your store.",
   },
   homeServices: {
     heading: "Ready to get paid on-site, on time?",
@@ -109,16 +109,22 @@ export default function CTASection({
         <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted flex-wrap">
           <Link
             href="/pricing"
-            className="hover:text-primary transition-colors"
+            className="hover:text-primary transition-colors inline-flex items-center gap-1 group"
           >
             View Pricing
+            <svg className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
           <span className="text-border select-none">&middot;</span>
           <Link
             href="/security"
-            className="hover:text-primary transition-colors"
+            className="hover:text-primary transition-colors inline-flex items-center gap-1 group"
           >
             Security & Compliance
+            <svg className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </Container>

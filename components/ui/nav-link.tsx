@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, useCallback, type ReactNode } from "react";
 import type { NavItem } from "@/lib/navigation";
 
 interface NavLinkProps {
@@ -37,18 +37,95 @@ export function NavDropdown({ label, items, className = "" }: NavDropdownProps) 
   const [open, setOpen] = useState(false);
   const isDescendantActive = items.some((item) => item.href === pathname);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const pinnedRef = useRef(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimerRef.current !== null) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    if (pinnedRef.current) return;
+    clearCloseTimer();
+    setOpen(false);
+  }, [clearCloseTimer]);
+
+  const openMenu = useCallback(() => {
+    clearCloseTimer();
+    setOpen(true);
+  }, [clearCloseTimer]);
+
+  const scheduleClose = useCallback(() => {
+    if (pinnedRef.current) return;
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setOpen(false);
+    }, 200);
+  }, [clearCloseTimer]);
+
+  /* Click outside */
+  useEffect(() => {
+    if (!open) return;
+    function handleClickOutside(e: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        pinnedRef.current = false;
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
+
+  /* Escape */
+  useEffect(() => {
+    if (!open) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        pinnedRef.current = false;
+        setOpen(false);
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  /* Cleanup timer on unmount */
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, [clearCloseTimer]);
+
   return (
     <div
+      ref={wrapperRef}
       className={`relative ${className}`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onPointerEnter={openMenu}
+      onPointerLeave={scheduleClose}
+      onFocus={openMenu}
+      onBlur={(e) => {
+        const related = e.relatedTarget as Node | null;
+        if (related && wrapperRef.current?.contains(related)) return;
+        scheduleClose();
+      }}
     >
       <button
         type="button"
         className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
           isDescendantActive ? "text-primary" : "text-muted"
         }`}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (pinnedRef.current) {
+            pinnedRef.current = false;
+            setOpen(false);
+          } else {
+            pinnedRef.current = true;
+            clearCloseTimer();
+            setOpen(true);
+          }
+        }}
         aria-expanded={open}
       >
         {label}
@@ -63,20 +140,27 @@ export function NavDropdown({ label, items, className = "" }: NavDropdownProps) 
         </svg>
       </button>
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-2 w-56 rounded-xl border border-border bg-background p-2 shadow-lg">
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`block rounded-lg px-4 py-2.5 text-sm transition-colors hover:bg-surface ${
-                pathname === item.href
-                  ? "text-primary font-medium"
-                  : "text-foreground"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+        /* Transparent hover bridge: pt-2 fills the dead zone without visible gap */
+        <div className="absolute left-0 top-full z-50 pt-2">
+          <div className="w-56 rounded-xl border border-border bg-background p-2 shadow-lg">
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => {
+                  pinnedRef.current = false;
+                  setOpen(false);
+                }}
+                className={`block rounded-lg px-4 py-2.5 text-sm transition-colors hover:bg-surface ${
+                  pathname === item.href
+                    ? "text-primary font-medium"
+                    : "text-foreground"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>

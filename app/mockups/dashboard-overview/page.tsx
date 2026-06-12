@@ -1,31 +1,28 @@
-import type { Metadata } from "next";
+"use client";
+
+import Chart from "@/components/ui/chart";
 import MockupShell from "@/app/mockups/_components/shell";
 
-export const metadata: Metadata = {
-  robots: { index: false, follow: false },
-  title: "Dashboard Mockup",
-};
-
-/* ----- Safe-placeholder data ----- */
+/* ----- Internal-preview data ----- */
 const summaryCards = [
-  { label: "Today's revenue", value: "\u2014" },
-  { label: "Transactions", value: "\u2014" },
-  { label: "Avg. ticket", value: "\u2014" },
-  { label: "Refund rate", value: "\u2014" },
+  { label: "Today's revenue", value: "$2,148" },
+  { label: "Transactions", value: "18" },
+  { label: "Avg. ticket", value: "$119" },
+  { label: "Refund rate", value: "2.1%" },
 ];
 
 const transactions = [
-  { type: "Card payment", amount: "\u2014", status: "Completed" },
-  { type: "Payment link", amount: "\u2014", status: "Pending" },
-  { type: "QR payment", amount: "\u2014", status: "Completed" },
-  { type: "Refund", amount: "\u2014", status: "Refunded" },
-  { type: "Card payment", amount: "\u2014", status: "Completed" },
+  { type: "Card payment", amount: "$142.00", status: "Completed" },
+  { type: "Payment link", amount: "$89.00", status: "Pending" },
+  { type: "QR payment", amount: "$67.00", status: "Completed" },
+  { type: "Refund", amount: "$30.00", status: "Refunded" },
+  { type: "Card payment", amount: "$215.00", status: "Completed" },
 ] as const;
 
 const staffActivity = [
-  { initials: "\u2014", label: "Preview user 1", action: "Processed a refund" },
-  { initials: "\u2014", label: "Preview user 2", action: "Created a payment link" },
-  { initials: "\u2014", label: "Preview user 3", action: "Voided a transaction" },
+  { initials: "MJ", label: "Maria Johnson", action: "Processed a refund" },
+  { initials: "KL", label: "Kevin Li", action: "Created a payment link" },
+  { initials: "SD", label: "Sarah Davis", action: "Voided a transaction" },
 ];
 
 const quickActions = [
@@ -33,6 +30,61 @@ const quickActions = [
   { label: "Generate QR Code", icon: QRIcon },
   { label: "Process Refund", icon: RefundIcon },
 ];
+
+/* ---------- Chart options ---------- */
+const revenueChartOption = {
+  tooltip: { trigger: "axis" as const },
+  legend: {
+    data: ["Gross", "Net"],
+    bottom: 0,
+    itemWidth: 8,
+    itemHeight: 8,
+  },
+  grid: { top: 8, right: 8, bottom: 28, left: 8 },
+  xAxis: {
+    type: "category" as const,
+    data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    axisLine: { show: false },
+    axisTick: { show: false },
+  },
+  yAxis: {
+    type: "value" as const,
+    splitLine: { lineStyle: { color: "#f5f5f5" } },
+    axisLabel: { show: false },
+  },
+  series: [
+    {
+      name: "Gross",
+      type: "bar" as const,
+      data: [310, 420, 290, 520, 390, 330, 280],
+      barWidth: 10,
+      itemStyle: {
+        borderRadius: [6, 6, 0, 0],
+        color: "#10b981",
+        opacity: 0.55,
+      },
+      emphasis: {
+        itemStyle: { opacity: 0.85 },
+      },
+      stack: "revenue",
+    },
+    {
+      name: "Net",
+      type: "bar" as const,
+      data: [260, 370, 250, 460, 330, 285, 235],
+      barWidth: 10,
+      itemStyle: {
+        borderRadius: [6, 6, 0, 0],
+        color: "#10b981",
+        opacity: 0.85,
+      },
+      emphasis: {
+        itemStyle: { opacity: 1 },
+      },
+      stack: "revenue",
+    },
+  ],
+};
 
 /* ---------- Icons ---------- */
 function LinkIcon() {
@@ -110,23 +162,16 @@ export default function DashboardOverviewPage() {
         <div className="grid gap-4 lg:grid-cols-3">
           {/* Revenue overview panel */}
           <div className="rounded-2xl border border-border bg-background p-5 shadow-md lg:col-span-2">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-sm font-semibold text-foreground">Revenue overview</h2>
               <div className="flex items-center gap-2 rounded-lg border border-border px-3 py-1.5 text-xs text-muted">
                 Last 7 days
                 <ChevronDown />
               </div>
             </div>
-            <div className="mt-4 flex h-[180px] items-end gap-3">
-              {[{ label: "M", h: 30 }, { label: "T", h: 55 }, { label: "W", h: 40 }, { label: "T", h: 70 }, { label: "F", h: 35 }, { label: "S", h: 60 }, { label: "S", h: 45 }].map((d) => (
-                <div key={d.label} className="flex flex-1 flex-col items-center gap-2.5">
-                  <div className="w-full rounded-t-lg bg-primary/15" style={{ height: `${d.h}%` }} />
-                  <span className="text-[9px] text-muted">{d.label}</span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-center text-[11px] text-muted">
-              Preview - live chart data appears here
+            <Chart option={revenueChartOption} height={180} />
+            <p className="mt-2 text-center text-[10px] text-muted/60">
+              +8.2% vs last week · Channel mix: Card 62% · QR 24% · Link 14%
             </p>
           </div>
 

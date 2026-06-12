@@ -22,7 +22,7 @@ export default function SectionWrapper({
     <section
       className={`${ambient ? "ambient-glow" : ""} ${
         dense ? "py-12 lg:py-20" : "py-16 lg:py-24"
-      } ${alternate ? "bg-surface" : ""} ${className}`}
+      } ${alternate ? "bg-[#F4F5F2]" : ""} ${className}`}
     >
       {children}
     </section>

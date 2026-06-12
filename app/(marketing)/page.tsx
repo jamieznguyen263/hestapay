@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { createPageMetadata, PAGE_TITLES } from "@/lib/metadata";
 import Hero from "@/components/marketing/hero";
-import TrustStrip from "@/components/marketing/trust-strip";
 import ProofStrip from "@/components/marketing/proof-strip";
-import DashboardHeroScene from "@/components/marketing/dashboard-hero-scene";
-import SolutionOverview from "@/components/marketing/solution-overview";
+import PaymentFlowStory from "@/components/marketing/payment-flow-story";
+import CoreCapabilities from "@/components/marketing/core-capabilities";
 import BusinessTypeSelector from "@/components/marketing/business-type-selector";
-import HowItWorks from "@/components/marketing/how-it-works";
+import DeepDiveRouting from "@/components/marketing/deep-dive-routing";
+import DeepDiveRecovery from "@/components/marketing/deep-dive-recovery";
+import DeepDiveSettlement from "@/components/marketing/deep-dive-settlement";
+import TrustInfrastructure from "@/components/marketing/trust-infrastructure";
 import FAQPreview from "@/components/marketing/faq-preview";
 import CTASection from "@/components/marketing/cta-section";
 
@@ -16,12 +18,14 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustStrip />
       <ProofStrip />
-      <DashboardHeroScene />
-      <SolutionOverview />
+      <PaymentFlowStory />
+      <CoreCapabilities />
       <BusinessTypeSelector />
-      <HowItWorks />
+      <DeepDiveRouting />
+      <DeepDiveRecovery />
+      <DeepDiveSettlement />
+      <TrustInfrastructure />
       <FAQPreview />
       <CTASection />
     </>

@@ -1,114 +1,47 @@
 import SectionWrapper from "@/components/marketing/section-wrapper";
 import Container from "@/components/ui/container";
 
-/* Sample review data -- curated product UI, placeholder values */
-const summaryCards = [
-  { label: "Today\u2019s revenue", value: "Receiving" },
-  { label: "Transactions", value: "\u2014" },
-  { label: "Avg. ticket", value: "\u2014" },
-  { label: "Refund rate", value: "\u2014" },
-] as const;
-
-const transactions = [
-  { type: "Card payment", amount: "\u2014", status: "Completed" },
-  { type: "Payment link", amount: "\u2014", status: "Pending" },
-  { type: "QR payment", amount: "\u2014", status: "Completed" },
-  { type: "Refund", amount: "\u2014", status: "Refunded" },
-  { type: "Card payment", amount: "\u2014", status: "Completed" },
-] as const;
-
-const filters = ["All types", "All statuses", "Last 7 days"] as const;
-
-const features = [
-  {
-    title: "Real-time transaction monitoring",
-    description:
-      "See every payment as it happens. Filter by type, status, or location.",
-  },
-  {
-    title: "Refunds and disputes",
-    description:
-      "Process refunds directly from the dashboard. No separate processor portal required.",
-  },
-  {
-    title: "Sales analytics",
-    description:
-      "Daily, weekly, and monthly revenue views. Compare across locations and payment methods.",
-  },
-  {
-    title: "Team access controls",
-    description:
-      "Role-based permissions. Managers see everything; cashiers see only their transactions.",
-  },
-];
-
-/* ---------- Icons ---------- */
-function ChevronDown() {
-  return (
-    <svg
-      className="h-3 w-3"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-    </svg>
-  );
-}
-
-function StatusChip({ status }: { status: string }) {
-  const map: Record<string, string> = {
-    Completed: "bg-primary/10 text-primary",
-    Pending: "bg-muted/15 text-muted",
-    Refunded: "bg-muted/15 text-muted",
-  };
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-medium ${
-        map[status] ?? "bg-muted/15 text-muted"
-      }`}
-    >
-      <svg className="h-1.5 w-1.5" viewBox="0 0 8 8">
-        <circle cx="4" cy="4" r="4" fill="currentColor" />
-      </svg>
-      {status}
-    </span>
-  );
-}
-
-const chartBars = [
-  { label: "M", h: 62 },
-  { label: "T", h: 88 },
-  { label: "W", h: 55 },
-  { label: "T", h: 95 },
-  { label: "F", h: 72 },
-  { label: "S", h: 48 },
-  { label: "S", h: 38 },
-];
-
 export default function DashboardHeroScene() {
   return (
-    <SectionWrapper ambient className="bg-gradient-to-b from-surface via-surface/50 to-background">
+    <SectionWrapper className="bg-white">
       <Container>
-        <div className="grid gap-12 items-center lg:grid-cols-12 lg:gap-20">
-          {/* Text side — stronger presence */}
+        <div className="grid gap-12 items-center lg:grid-cols-12 lg:gap-16">
+          {/* Left — feature copy */}
           <div className="lg:col-span-5">
-            <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-5">
+            <p className="text-xs font-semibold text-emerald-600 uppercase tracking-widest mb-5">
               Merchant dashboard
             </p>
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">
               One dashboard, full visibility
             </h2>
-            <p className="mt-5 text-lg text-muted leading-relaxed">
-              Track sales, manage payments, and run your business from a single,
-              modern interface. No separate processor logins.
+            <p className="mt-5 text-[15px] text-[#5B6475] leading-relaxed">
+              Track authorizations, manage routing rules, and resolve payment
+              exceptions from a single command surface. Built for payment
+              operations teams running multi-location businesses.
             </p>
-            <ul className="mt-10 space-y-4">
-              {features.map((feature) => (
-                <li key={feature.title} className="flex gap-3">
+
+            <ul className="mt-8 space-y-5">
+              {[
+                {
+                  t: "Authorization monitoring",
+                  d: "Real-time visibility into capture rates, authorization rates, and fallback activity across every payment channel.",
+                },
+                {
+                  t: "Exception recovery",
+                  d: "Automated retry rules recover stuck payments. Operators review and resolve flagged transactions from one queue.",
+                },
+                {
+                  t: "Route health and audits",
+                  d: "Every routing decision is logged. Settlement batch reconciliation surfaces variances before they compound.",
+                },
+                {
+                  t: "Multi-location operations",
+                  d: "43 locations, one dashboard. Route rules, settlement cycles, and exception workflows scale with your business.",
+                },
+              ].map((f) => (
+                <li key={f.t} className="flex gap-3">
                   <svg
-                    className="mt-0.5 h-5 w-5 shrink-0 text-primary"
+                    className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -121,11 +54,11 @@ export default function DashboardHeroScene() {
                     />
                   </svg>
                   <div>
-                    <h4 className="text-sm font-semibold text-foreground">
-                      {feature.title}
+                    <h4 className="text-sm font-semibold text-[#0F172A]">
+                      {f.t}
                     </h4>
-                    <p className="mt-1 text-sm text-muted leading-relaxed">
-                      {feature.description}
+                    <p className="mt-1 text-sm text-[#5B6475] leading-relaxed">
+                      {f.d}
                     </p>
                   </div>
                 </li>
@@ -133,9 +66,9 @@ export default function DashboardHeroScene() {
             </ul>
           </div>
 
-          {/* Product scene side — larger, more dramatic */}
+          {/* Right — routing rules product view */}
           <div className="lg:col-span-7">
-            <DashboardVisual />
+            <RoutingRulesVisual />
           </div>
         </div>
       </Container>
@@ -143,188 +76,279 @@ export default function DashboardHeroScene() {
   );
 }
 
-function DashboardVisual() {
+function RoutingRulesVisual() {
   return (
     <div className="relative w-full select-none">
-      <div
-        className="relative overflow-hidden rounded-3xl border border-border bg-background"
-        style={{
-          perspective: "900px",
-          transformStyle: "preserve-3d",
-          boxShadow:
-            "0 0 0 1px rgba(0,0,0,0.03), 0 12px 56px -12px rgba(0,0,0,0.12), 0 4px 20px -4px rgba(16,185,129,0.06), inset 0 1px 0 rgba(255,255,255,0.7)",
-        }}
-      >
-        <div
-          className="relative"
-          style={{
-            transform: "rotateX(2deg) rotateY(-2deg)",
-            transformOrigin: "center center",
-          }}
-        >
-          <div className="p-5 sm:p-6 space-y-4 sm:space-y-5">
-            {/* Top summary cards */}
-            <div className="grid gap-3 grid-cols-2 sm:grid-cols-4">
-              {summaryCards.map((card, i) => (
-                <div
-                  key={card.label}
-                  className={`rounded-2xl border p-3 sm:p-4 ${
-                    i === 0
-                      ? "border-accent-border bg-background shadow-card"
-                      : "border-border bg-background shadow-card"
-                  }`}
-                  style={{
-                    transform: i === 0 ? "translateZ(6px)" : "translateZ(0px)",
-                  }}
-                >
-                  <p className="text-[9px] sm:text-[10px] text-muted uppercase tracking-wide">
-                    {card.label}
-                  </p>
-                  <p className="mt-1.5 sm:mt-2 text-lg sm:text-xl font-bold text-primary">
-                    {card.value}
-                  </p>
-                </div>
-              ))}
+      <div className="rounded-xl border border-[#E6EBF2] bg-white overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.03)]">
+        {/* Product header */}
+        <div className="flex items-center gap-3 px-5 py-2.5 border-b border-[#E6EBF2] bg-[#F7F9FC]">
+          <span className="text-[12px] font-semibold text-[#0F172A]">
+            Northline Local Group
+          </span>
+          <span className="text-[#5B6475] text-[11px]">43 locations</span>
+          <div className="ml-auto flex items-center gap-3 text-[11px]">
+            <span className="text-[#5B6475]">This week</span>
+            <span className="text-[#5B6475]">All routes</span>
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-emerald-700 font-medium text-[10px]">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Routes healthy
+            </span>
+          </div>
+        </div>
+
+        {/* KPI strip */}
+        <div className="flex items-stretch divide-x divide-[#E6EBF2] border-b border-[#E6EBF2]">
+          <div className="px-5 py-3 flex-1">
+            <p className="text-[10px] text-[#5B6475] uppercase tracking-wide font-medium">
+              Active routes
+            </p>
+            <p className="text-[16px] font-bold text-[#0F172A] mt-0.5 tabular-nums">
+              7
+            </p>
+            <p className="text-[10px] text-emerald-600 mt-0.5">
+              6 healthy · 1 degraded
+            </p>
+          </div>
+          <div className="px-5 py-3 flex-1">
+            <p className="text-[10px] text-[#5B6475] uppercase tracking-wide font-medium">
+              Routing decisions today
+            </p>
+            <p className="text-[16px] font-bold text-[#0F172A] mt-0.5 tabular-nums">
+              28,491
+            </p>
+            <p className="text-[10px] text-emerald-600 mt-0.5">
+              +8.2% vs last week
+            </p>
+          </div>
+          <div className="px-5 py-3 flex-1">
+            <p className="text-[10px] text-[#5B6475] uppercase tracking-wide font-medium">
+              Route fallback rate
+            </p>
+            <p className="text-[16px] font-bold text-[#0F172A] mt-0.5 tabular-nums">
+              1.14%
+            </p>
+            <p className="text-[10px] text-emerald-600 mt-0.5">
+              −0.3% this week
+            </p>
+          </div>
+          <div className="px-5 py-3 flex-1">
+            <p className="text-[10px] text-[#5B6475] uppercase tracking-wide font-medium">
+              Open exceptions
+            </p>
+            <p className="text-[16px] font-bold text-[#0F172A] mt-0.5 tabular-nums">
+              17
+            </p>
+            <p className="text-[10px] text-rose-600 mt-0.5">
+              3 need attention
+            </p>
+          </div>
+        </div>
+
+        {/* Main workspace — channel performance chart + route table */}
+        <div className="p-5 space-y-4">
+          {/* Channel performance chart */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="text-[13px] font-semibold text-[#0F172A]">
+                  Channel performance by route
+                </h3>
+                <p className="text-[11px] text-[#5B6475] mt-0.5">
+                  Authorization volume by channel across active routes
+                </p>
+              </div>
+              <div className="flex items-center gap-3 text-[10px]">
+                <span className="flex items-center gap-1.5 text-[#5B6475]">
+                  <span className="h-2.5 w-4 rounded-sm bg-blue-200" />{" "}
+                  Terminal
+                </span>
+                <span className="flex items-center gap-1.5 text-[#5B6475]">
+                  <span className="h-2.5 w-4 rounded-sm bg-emerald-200" />{" "}
+                  Online
+                </span>
+                <span className="flex items-center gap-1.5 text-[#5B6475]">
+                  <span className="h-2.5 w-4 rounded-sm bg-violet-200" /> Mobile
+                </span>
+              </div>
             </div>
 
-            {/* Filter row */}
-            <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-[10px] sm:text-xs font-semibold text-foreground mr-1">
-                Recent transactions
-              </h2>
-              {filters.map((f) => (
-                <div
-                  key={f}
-                  className="flex items-center gap-1 rounded-lg border border-border px-2.5 py-1.5 text-[10px] sm:text-[11px] text-muted"
-                >
-                  {f}
-                  <ChevronDown />
-                </div>
-              ))}
-              <span className="ml-auto text-[10px] sm:text-[11px] text-muted">
-                View all &rsaquo;
-              </span>
-            </div>
-
-            {/* Chart + panel */}
-            <div className="grid gap-4 lg:grid-cols-[1fr_180px]">
-              {/* Chart */}
-              <div
-                className="rounded-2xl border border-border bg-surface p-4 sm:p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_6px_-2px_rgba(0,0,0,0.04)]"
-                style={{ transform: "translateZ(-2px)" }}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-foreground">
-                    Revenue overview
-                  </h3>
-                  <div className="flex items-center gap-1 rounded-lg border border-border px-2 py-1 text-[9px] sm:text-[10px] text-muted bg-background">
-                    Last 7 days
-                    <ChevronDown />
+            <div className="relative h-[180px]">
+              {/* Grid lines */}
+              <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                {["$50k", "$40k", "$30k", "$20k", "$10k", "$0"].map((v) => (
+                  <div key={v} className="relative h-0">
+                    <div className="absolute inset-x-0 border-t border-[#E6EBF2]" />
+                    <span className="absolute -left-1 top-0 -translate-y-1/2 text-[10px] text-[#94A3B8] bg-white pr-2">
+                      {v}
+                    </span>
                   </div>
-                </div>
-                <div className="flex items-end gap-2 h-[110px] sm:h-[140px]">
-                  {chartBars.map((d) => (
+                ))}
+              </div>
+
+              {/* Grouped bars — 3 channels × 7 days */}
+              <div className="absolute inset-0 flex items-end gap-2 pl-8 pr-2 pb-6 z-10">
+                {[
+                  { t: 38, o: 42, m: 18 },
+                  { t: 32, o: 44, m: 15 },
+                  { t: 28, o: 48, m: 22 },
+                  { t: 35, o: 40, m: 20 },
+                  { t: 30, o: 46, m: 17 },
+                  { t: 40, o: 38, m: 25 },
+                  { t: 42, o: 44, m: 28 },
+                ].map((d, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 flex items-end gap-[2px] h-full"
+                  >
                     <div
-                      key={d.label}
-                      className="flex flex-1 flex-col items-center gap-1.5"
-                    >
-                      <div
-                        className="w-full rounded-t-lg"
-                        style={{
-                          height: `${d.h}%`,
-                          background:
-                            "linear-gradient(to top, rgba(16,185,129,0.22), rgba(16,185,129,0.08))",
-                        }}
-                      />
-                      <span className="text-[7px] sm:text-[9px] text-muted">
-                        {d.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                      className="flex-1 rounded-t"
+                      style={{
+                        height: `${(d.t / 50) * 100}%`,
+                        background: "rgba(59,130,246,0.25)",
+                      }}
+                    />
+                    <div
+                      className="flex-1 rounded-t"
+                      style={{
+                        height: `${(d.o / 50) * 100}%`,
+                        background: "rgba(16,185,129,0.25)",
+                      }}
+                    />
+                    <div
+                      className="flex-1 rounded-t"
+                      style={{
+                        height: `${(d.m / 50) * 100}%`,
+                        background: "rgba(139,92,246,0.25)",
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
 
-              {/* Side panel */}
-              <div
-                className="rounded-2xl border border-border bg-background p-4 sm:p-5 shadow-card flex flex-col justify-between"
-                style={{ transform: "translateZ(2px)" }}
-              >
-                <div>
-                  <h3 className="text-[10px] sm:text-xs font-semibold text-foreground mb-3">
-                    Quick actions
-                  </h3>
-                  <div className="space-y-1">
-                    {[
-                      { label: "View details" },
-                      { label: "Print receipt" },
-                      { label: "Export" },
-                    ].map((action) => (
-                      <button
-                        key={action.label}
-                        type="button"
-                        className="flex items-center gap-2 w-full rounded-lg px-2 py-2 text-[9px] sm:text-[10px] text-muted hover:bg-surface hover:text-foreground transition-colors text-left"
-                      >
-                        <span className="h-3 w-3 shrink-0 rounded-full bg-muted/20" />
-                        {action.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-3 pt-3 border-t border-border">
-                  <p className="text-[9px] text-muted">
-                    Connected to trusted infrastructure
-                  </p>
-                </div>
+              {/* Day axis */}
+              <div className="absolute bottom-0 left-0 right-0 flex justify-between pl-8 text-[10px] text-[#94A3B8] z-20">
+                {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
+                  <span key={d}>{d}</span>
+                ))}
               </div>
             </div>
+          </div>
 
-            {/* Transaction table */}
-            <div
-              className="rounded-2xl border border-border bg-background overflow-hidden shadow-card"
-              style={{ transform: "translateZ(4px)" }}
-            >
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="border-b border-border text-[8px] sm:text-[10px] text-muted uppercase tracking-wide">
-                      <th className="py-3 pl-4 sm:pl-5 font-medium">Type</th>
-                      <th className="py-3 font-medium">Amount</th>
-                      <th className="py-3 font-medium">Status</th>
-                      <th className="py-3 pr-4 sm:pr-5 font-medium" />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {transactions.map((tx, i) => (
-                      <tr
-                        key={i}
-                        className="border-b border-border last:border-0 hover:bg-surface/50"
-                      >
-                        <td className="py-3 pl-4 sm:pl-5 text-[10px] sm:text-xs text-foreground">
-                          {tx.type}
-                        </td>
-                        <td className="py-3 text-[10px] sm:text-xs text-muted">
-                          {tx.amount}
-                        </td>
-                        <td className="py-3">
-                          <StatusChip status={tx.status} />
-                        </td>
-                        <td className="py-3 pr-4 sm:pr-5">
-                          <button
-                            type="button"
-                            className="rounded-lg px-2 py-1 text-[9px] sm:text-[10px] font-medium text-muted hover:bg-surface hover:text-foreground transition-colors"
+          {/* Route health table */}
+          <div className="border-t border-[#E6EBF2] pt-4">
+            <h3 className="text-[13px] font-semibold text-[#0F172A] mb-3">
+              Route health
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b border-[#E6EBF2] text-[10px] text-[#5B6475] uppercase tracking-wide">
+                    <th className="py-2 pl-1 font-medium">Route</th>
+                    <th className="py-2 font-medium">Channel</th>
+                    <th className="py-2 font-medium">Status</th>
+                    <th className="py-2 font-medium text-right">Authorization rate</th>
+                    <th className="py-2 font-medium text-right">Route latency</th>
+                    <th className="py-2 font-medium text-right pr-1">Fallbacks</th>
+                  </tr>
+                </thead>
+                <tbody className="text-[11px]">
+                  {[
+                    {
+                      rt: "Rte A — Primary",
+                      ch: "Online invoice",
+                      st: "Healthy",
+                      sc: "emerald",
+                      rate: "99.4%",
+                      lat: "312ms",
+                      fb: "2",
+                    },
+                    {
+                      rt: "Rte B — Secondary",
+                      ch: "Card-present",
+                      st: "Healthy",
+                      sc: "emerald",
+                      rate: "98.8%",
+                      lat: "445ms",
+                      fb: "7",
+                    },
+                    {
+                      rt: "Rte C — Overflow",
+                      ch: "Terminal",
+                      st: "Degraded",
+                      sc: "amber",
+                      rate: "89.2%",
+                      lat: "842ms",
+                      fb: "23",
+                    },
+                    {
+                      rt: "Rte D — Field pay",
+                      ch: "Mobile",
+                      st: "Healthy",
+                      sc: "emerald",
+                      rate: "97.9%",
+                      lat: "521ms",
+                      fb: "5",
+                    },
+                  ].map((r, i) => (
+                    <tr
+                      key={i}
+                      className={`border-b border-[#E6EBF2] hover:bg-[#F7F9FC] ${
+                        r.sc === "amber" ? "bg-amber-50/60" : ""
+                      }`}
+                    >
+                      <td className="py-2.5 pl-1 text-[#0F172A] font-medium">
+                        {r.rt}
+                      </td>
+                      <td className="py-2.5 text-[#5B6475]">{r.ch}</td>
+                      <td className="py-2.5">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-medium">
+                          <span
+                            className={`h-1.5 w-1.5 rounded-full ${
+                              r.sc === "emerald"
+                                ? "bg-emerald-500"
+                                : "bg-amber-500"
+                            }`}
+                          />
+                          <span
+                            className={
+                              r.sc === "emerald"
+                                ? "text-emerald-600"
+                                : "text-amber-600"
+                            }
                           >
-                            View
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                            {r.st}
+                          </span>
+                        </span>
+                      </td>
+                      <td className="py-2.5 text-[#0F172A] font-medium text-right tabular-nums">
+                        {r.rate}
+                      </td>
+                      <td className="py-2.5 text-[#5B6475] text-right tabular-nums">
+                        {r.lat}
+                      </td>
+                      <td className="py-2.5 text-right tabular-nums pr-1">
+                        <span
+                          className={
+                            Number(r.fb) > 20
+                              ? "text-amber-600 font-medium"
+                              : "text-[#5B6475]"
+                          }
+                        >
+                          {r.fb}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
+
+      <p className="text-center mt-2 text-[10px] text-[#94A3B8]">
+        Internal preview · Northline Local Group
+      </p>
     </div>
   );
 }

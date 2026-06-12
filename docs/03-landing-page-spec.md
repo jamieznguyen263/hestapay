@@ -43,16 +43,13 @@
 ## Homepage sections
 1. Hero
 2. Trust strip
-3. Problem
-4. Solution overview
-5. Choose your business type
-6. How HestaPay works
-7. Restaurant workflow
-8. Salon workflow
-9. Merchant dashboard proof
-10. Security and architecture
-11. FAQ preview
-12. Final CTA
+3. Proof strip
+4. Merchant dashboard proof
+5. Solution overview
+6. Business type system
+7. How HestaPay works
+8. FAQ preview
+9. Final CTA
 
 ## Style direction
 - modern
@@ -62,15 +59,39 @@
 - product-led hero
 - clean typography
 - subtle motion
+- technology-forward compositions
 - no generic stock-photo feel
 
 ## Compliance and trust rules
-- no fake testimonials
-- no fake customer logos
-- no fake partnerships
 - no fake compliance claims
 - no unsupported performance claims
 - keep language partner-safe
+
+## Internal preview trust/content rules
+
+Allowed for internal preview:
+- fictional testimonials
+- fictional customer logos and wordmarks
+- fictional merchant names
+- fictional partner placeholders
+- fictional trust rails and proof sections for visual review
+
+Requirements:
+- use them to review layout, density, credibility cues, and art direction
+- avoid copying real brands too closely
+- treat all fictional trust content as replace-before-launch content
+
+## Internal preview rules
+
+For internal review builds:
+- realistic dashboard and transaction UI is allowed
+- realistic counts, totals, and flow states are allowed
+- product scenes should feel complete, not placeholder-safe
+- fictional trust and brand content is allowed for visual review
+
+For public release:
+- review all numeric content and claims again before publication
+- replace fictional testimonials, logos, and partner placeholders
 
 ## CTA hierarchy
 ### Primary
@@ -86,9 +107,9 @@
 - Explore the Dashboard
 
 ## Page purpose notes
-- Homepage: category page + routing + lead capture
-- Vertical pages: money pages for industry intent
-- Product pages: solution pages for commercial intent
+- Homepage: flagship money page + brand reference + product overview
+- Vertical pages: industry-specific money pages
+- Product pages: solution pages with product-led proof
 - Pricing: qualification and sales support
 - Security: trust page
 - Book Demo: high-intent conversion
@@ -101,10 +122,13 @@ Use mostly:
 - product screenshots
 - workflow diagrams
 - device mockups
-- selected contextual business imagery
+- product fragments
+- dashboard crops
+- control-flow scenes
+- selected contextual business imagery when needed
 
 Avoid:
 - generic handshake photos
-- fake trust badges
+- fake compliance trust badges
 - irrelevant stock images
 - crypto-style 3D visuals

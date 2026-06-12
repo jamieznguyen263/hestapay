@@ -1,7 +1,7 @@
 # HestaPay Project Overview
 
 ## What HestaPay is
-HestaPay is a modern payment software platform for local businesses.
+HestaPay is payment software and an orchestration layer for local businesses.
 It is designed for restaurants, nail salons, retail, home services, and similar operationally complex SMBs.
 
 ## What HestaPay is not
@@ -18,15 +18,28 @@ It is designed for restaurants, nail salons, retail, home services, and similar 
 - admin and operations portal
 
 ## Current build priority
-Build the website and landing system first so HestaPay can:
-- capture leads
-- support demos
+Build a high-fidelity internal preview so HestaPay can:
+- review the product and brand system internally
+- show realistic product flows to founders and operators
 - support partner conversations
-- create SEO foundation
-- provide a polished public product presence
+- support investor and stakeholder walkthroughs
+- create a polished pre-launch product presence
+
+## Current mode
+
+This repo is currently optimized for **internal preview realism**, not
+placeholder-only marketing.
+
+That means:
+- product visuals should feel complete
+- dashboard and checkout scenes can use realistic-looking UI structure
+- realistic internal numbers and table states are allowed
+- fictional internal-preview brand content is allowed
+- the site should feel closer to a real software product than a concept deck
 
 ## Messaging rules
 - use partner-safe wording
 - do not say powered by any provider unless confirmed
 - do not claim compliance certifications unless confirmed
-- do not invent testimonials, logos, customer counts, or case studies
+- fictional testimonials, logos, customer names, and case-study-style content are allowed for internal preview only
+- do not drift into bank / processor / POS replacement positioning

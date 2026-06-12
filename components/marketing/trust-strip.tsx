@@ -4,65 +4,85 @@ interface TrustStripProps {
   variant?: "default" | "compact";
 }
 
+const assurances = [
+  {
+    label: "Trusted infrastructure",
+    detail: "Payments processed through established provider networks",
+  },
+  {
+    label: "No extra hardware",
+    detail: "Works with the devices and terminals you already use",
+  },
+  {
+    label: "Faster payment visibility",
+    detail: "See transactions and refunds in hours, not days",
+  },
+] as const;
+
 export default function TrustStrip({ variant = "default" }: TrustStripProps) {
   const compact = variant === "compact";
 
+  if (compact) {
+    return (
+      <section className="border-y border-border bg-surface py-8">
+        <Container>
+          <div className="grid gap-8 sm:grid-cols-3 sm:divide-x sm:divide-border">
+            {assurances.map((item) => (
+              <div
+                key={item.label}
+                className="sm:px-6 first:sm:pl-0 last:sm:pr-0"
+              >
+                <p className="text-sm font-semibold text-foreground">
+                  {item.label}
+                </p>
+                <p className="mt-1 text-xs text-muted">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+    );
+  }
+
   return (
-    <section className={`border-y border-border bg-surface ${compact ? "py-8" : "py-12"}`}>
+    <section className="border-y border-border bg-surface py-14 lg:py-20">
       <Container>
-        {/* Trust signals — abstract, no fake logos */}
-        <div className={`grid gap-8 items-center ${compact ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-              <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-foreground">Secure by design</p>
-              <p className="text-xs text-muted">Built on trusted infrastructure</p>
-            </div>
+        <div className="grid gap-14 lg:grid-cols-12 lg:items-center">
+          {/* Left: intro block */}
+          <div className="lg:col-span-5">
+            <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-5">
+              Assurance
+            </p>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:pr-10">
+              Built on infrastructure you can rely on
+            </h2>
+            <p className="mt-4 text-base text-muted leading-relaxed max-w-md">
+              HestaPay operates on proven payment infrastructure &mdash; so you
+              get reliability without re-building your stack.
+            </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-              <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-foreground">Built for speed</p>
-              <p className="text-xs text-muted">Checkout in seconds, not minutes</p>
+          {/* Right: 3 assurance items as proof rail */}
+          <div className="lg:col-span-7">
+            <div className="grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              {assurances.map((item, i) => (
+                <div
+                  key={item.label}
+                  className="py-6 sm:py-0 sm:px-7 first:sm:pl-0 last:sm:pr-0"
+                >
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <span className="flex h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                    <p className="text-sm font-semibold text-foreground">
+                      {item.label}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted leading-relaxed">
+                    {item.detail}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-
-          {!compact && (
-            <>
-              <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">For local business</p>
-                  <p className="text-xs text-muted">Purpose-built, not repurposed</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">No hardware required</p>
-                  <p className="text-xs text-muted">Works with devices you already have</p>
-                </div>
-              </div>
-            </>
-          )}
         </div>
       </Container>
     </section>

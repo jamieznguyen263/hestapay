@@ -3,7 +3,6 @@
 import { useState } from "react";
 import SectionWrapper from "@/components/marketing/section-wrapper";
 import Container from "@/components/ui/container";
-import SectionHeading from "@/components/ui/section-heading";
 import Link from "next/link";
 
 const faqs = [
@@ -40,12 +39,19 @@ export default function FAQPreview() {
   return (
     <SectionWrapper alternate>
       <Container>
-        <SectionHeading
-          title="Frequently asked questions"
-          subtitle="Quick answers to common questions about HestaPay."
-          centered
-        />
-        <div className="mt-12 max-w-2xl mx-auto space-y-3">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">
+            FAQ
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Frequently asked questions
+          </h2>
+          <p className="mt-4 text-lg text-muted leading-relaxed">
+            Quick answers to common questions about HestaPay.
+          </p>
+        </div>
+
+        <div className="mt-14 max-w-2xl mx-auto space-y-3">
           {faqs.map((faq, index) => (
             <div
               key={index}
@@ -53,12 +59,12 @@ export default function FAQPreview() {
             >
               <button
                 type="button"
-                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-surface/50 transition-colors"
+                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-surface/50 transition-colors"
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
               >
-                <span className="text-sm font-medium text-foreground pr-4">
+                <span className="text-sm font-semibold text-foreground pr-4">
                   {faq.question}
                 </span>
                 <svg
@@ -78,7 +84,7 @@ export default function FAQPreview() {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-5">
+                <div className="px-6 pb-6">
                   <p className="text-sm text-muted leading-relaxed border-t border-border pt-4">
                     {faq.answer}
                   </p>
@@ -93,8 +99,18 @@ export default function FAQPreview() {
             className="text-sm font-medium text-primary hover:text-primary-dark inline-flex items-center gap-1 group transition-colors duration-200"
           >
             View all FAQ
-            <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            <svg
+              className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </Link>
         </div>

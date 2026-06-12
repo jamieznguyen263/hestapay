@@ -12,16 +12,16 @@ const items = [
 
 export default function ProofStrip() {
   return (
-    <section className="border-y border-border bg-surface py-5 overflow-hidden">
-      <div className="flex gap-14 animate-marquee whitespace-nowrap">
+    <section className="border-y border-border/50 bg-surface/50 py-4 overflow-hidden">
+      <div className="flex gap-12 animate-marquee whitespace-nowrap">
         {[...items, ...items].map((item, i) => (
-          <div
+          <span
             key={i}
-            className="inline-flex items-center gap-2.5 rounded-full border border-accent-border bg-accent-surface px-5 py-2 text-sm font-medium text-primary shrink-0"
+            className="inline-flex items-center gap-2.5 text-sm font-medium text-muted shrink-0 opacity-70"
           >
-            <span className="flex h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="flex h-1.5 w-1.5 rounded-full bg-primary/60" />
             {item}
-          </div>
+          </span>
         ))}
       </div>
     </section>

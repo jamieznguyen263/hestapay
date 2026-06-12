@@ -88,17 +88,17 @@ export default function Hero() {
 }
 
 /**
- * HeroProductSurface
+ * HeroProductSurface — Canonical v1
  *
- * A cropped monitoring workspace — NOT a dashboard mockup.
+ * Composition: Selected-incident monitoring workspace.
  *
- * Composition (horizontal bands, no left/right split):
  *   [Toolbar]
- *   [Full-width auth monitoring chart — dominant anchor]
- *   [Incident context strip — route health + selected incident]
- *   [Affected locations table — dense, operational]
+ *   [Chart (62%)  |  Incident Inspector (38%)]
+ *   [Full-width Affected Locations Table]
  *
- * No permanent sidebar. No "chart-left + panel-right" template.
+ * The right is NOT a generic sidebar.
+ * It is a focused incident inspector orbiting one selected event:
+ * Rte C auth degradation at 14:20.
  */
 function HeroProductSurface() {
   return (
@@ -138,244 +138,62 @@ function HeroProductSurface() {
           </span>
         </div>
 
-        {/* ===== CHART: Full-width, dominant ===== */}
-        <div className="px-4 pt-3 pb-1" style={{ minHeight: "285px" }}>
-          {/* Compact summary row above chart */}
-          <div className="flex items-center gap-6 mb-1">
-            <div>
-              <span className="text-[11px] text-[#5B6475] font-medium">
-                Captured today
+        {/* ===== MAIN AREA: Chart (left) + Incident Inspector (right) ===== */}
+        <div className="flex" style={{ minHeight: "460px" }}>
+          {/* ===== LEFT: Dominant monitoring chart ===== */}
+          <div className="flex-[1.62] min-w-0 flex flex-col bg-white">
+            {/* Compact operational summary */}
+            <div className="flex items-center gap-5 px-4 pt-3 pb-1">
+              <span className="text-[11px] text-[#5B6475]">
+                <span className="font-medium text-[#94A3B8]">Today</span>{" "}
+                <span className="font-bold text-[#0F172A] tabular-nums text-[15px] ml-0.5">
+                  $184,920
+                </span>
               </span>
-              <span className="ml-1.5 text-[15px] font-bold text-[#0F172A] tabular-nums">
-                $184,920
+              <span className="text-[11px] text-[#5B6475]">
+                <span className="font-medium text-[#94A3B8]">Auth rate</span>{" "}
+                <span className="font-bold text-emerald-600 tabular-nums text-[15px] ml-0.5">
+                  98.72%
+                </span>
               </span>
-            </div>
-            <div>
-              <span className="text-[11px] text-[#5B6475] font-medium">
-                Auth rate
+              <span className="text-[11px] text-[#5B6475]">
+                <span className="font-medium text-[#94A3B8]">Routes</span>{" "}
+                <span className="font-bold text-[#0F172A] tabular-nums text-[15px] ml-0.5">
+                  6/7 active
+                </span>
               </span>
-              <span className="ml-1.5 text-[15px] font-bold text-emerald-600 tabular-nums">
-                98.72%
-              </span>
-            </div>
-            <div>
-              <span className="text-[11px] text-[#5B6475] font-medium">
-                Active routes
-              </span>
-              <span className="ml-1.5 text-[15px] font-bold text-[#0F172A] tabular-nums">
-                6/7
-              </span>
-            </div>
 
-            {/* Legend */}
-            <div className="ml-auto flex items-center gap-3">
+              <span className="flex-1" />
+
+              {/* Legend */}
               <span className="flex items-center gap-1 text-[11px] text-[#5B6475]">
                 <span className="h-2 w-2 rounded-sm bg-[#E0E5EC] border border-[#CFD6E0]" />
                 Volume
               </span>
-              <span className="flex items-center gap-1 text-[11px] text-[#5B6475]">
+              <span className="flex items-center gap-1 text-[11px] text-[#5B6475] ml-2">
                 <span className="h-0.5 w-3.5 bg-emerald-500 rounded-full" />
                 Auth rate
               </span>
-              <span className="flex items-center gap-1 text-[11px] text-amber-600">
+              <span className="flex items-center gap-1 text-[11px] text-amber-600 ml-2">
                 <span className="h-0.5 w-3.5 bg-amber-400 rounded-full" />
-                SLA 98.5%
+                SLA
               </span>
+            </div>
+
+            {/* Chart */}
+            <div className="flex-1 px-3 pt-2 pb-2">
+              <AuthRateChart />
             </div>
           </div>
 
-          <AuthRateChart />
-        </div>
-
-        {/* ===== INCIDENT CONTEXT STRIP ===== */}
-        <div className="border-t border-[#EBEEF2] bg-white px-4 py-3 flex items-start gap-6">
-          {/* Selected incident — Rte C */}
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="h-2 w-2 rounded-full bg-rose-500 shrink-0" />
-              <span className="text-[12px] font-semibold text-[#0F172A]">
-                Rte C — Overflow: Auth degraded (82.1%)
-              </span>
-              <span className="text-[11px] text-[#94A3B8]">14:20</span>
-            </div>
-            <div className="flex items-center gap-4 flex-wrap text-[12px]">
-              <span className="text-[#5B6475]">
-                <span className="text-[#94A3B8]">Fallback:</span>{" "}
-                <span className="font-medium text-[#0F172A]">
-                  Rte C → Rte E engaged
-                </span>
-              </span>
-              <span className="text-emerald-600 font-medium text-[11px]">
-                Auto-recovery active
-              </span>
-              <span className="text-[#D0D5DD]">|</span>
-              <span className="text-[#5B6475]">
-                <span className="text-[#94A3B8]">Latency Δ:</span>{" "}
-                <span className="font-semibold text-amber-600 tabular-nums">
-                  +526ms
-                </span>
-              </span>
-              <span className="text-[#D0D5DD]">|</span>
-              <span className="text-[#5B6475]">
-                <span className="text-[#94A3B8]">Affected:</span>{" "}
-                <span className="font-medium text-[#0F172A] tabular-nums">
-                  25 txns · $4,820 in flight
-                </span>
-              </span>
-              <span className="text-[#D0D5DD]">|</span>
-              <span className="text-[#5B6475] text-[11px]">
-                Gateway timeout · 3 attempts
-              </span>
-            </div>
-          </div>
-
-          {/* Route health mini-bars — compact */}
-          <div className="shrink-0 flex items-center gap-3">
-            {[
-              { name: "A", rate: 99.4, degraded: false },
-              { name: "B", rate: 98.8, degraded: false },
-              { name: "C", rate: 82.1, degraded: true },
-              { name: "D", rate: 97.9, degraded: false },
-            ].map((r) => (
-              <div key={r.name} className="flex items-center gap-1.5">
-                <span className="text-[11px] font-medium text-[#5B6475] w-3">
-                  {r.name}
-                </span>
-                <div className="w-10 h-1.5 rounded-full bg-[#E8ECF1] overflow-hidden">
-                  <div
-                    className={`h-full rounded-full ${
-                      r.degraded ? "bg-amber-500" : "bg-emerald-500"
-                    }`}
-                    style={{ width: `${r.rate}%` }}
-                  />
-                </div>
-                <span
-                  className={`text-[11px] font-semibold tabular-nums ${
-                    r.degraded ? "text-amber-600" : "text-emerald-600"
-                  }`}
-                >
-                  {r.rate.toFixed(1)}%
-                </span>
-              </div>
-            ))}
+          {/* ===== RIGHT: Selected Incident Inspector ===== */}
+          <div className="w-[310px] shrink-0 border-l border-[#EBEEF2] bg-[#FAFBFC] flex flex-col">
+            <IncidentInspector />
           </div>
         </div>
 
-        {/* ===== AFFECTED LOCATIONS TABLE ===== */}
-        <div className="border-t border-[#EBEEF2] bg-[#FAFBFC]">
-          <div className="flex items-center gap-2 px-4 py-2 border-b border-[#EBEEF2]">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-            <span className="text-[11px] font-semibold text-[#0F172A]">
-              Locations routed via degraded Rte C — rerouting in progress
-            </span>
-            <span className="text-[11px] text-[#94A3B8]">5 affected</span>
-          </div>
-          <table className="w-full text-left">
-            <thead>
-              <tr className="text-[11px] font-medium text-[#5B6475] border-b border-[#EBEEF2]">
-                <th className="px-4 py-2 font-medium">Location</th>
-                <th className="px-3 py-2 font-medium">Route</th>
-                <th className="px-3 py-2 font-medium text-right">
-                  Txns rerouted
-                </th>
-                <th className="px-3 py-2 font-medium text-right">
-                  Latency baseline
-                </th>
-                <th className="px-3 py-2 font-medium text-right">
-                  Latency current
-                </th>
-                <th className="px-4 py-2 font-medium">Recovery</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                {
-                  name: "Northline Bistro #4",
-                  route: "C → E",
-                  rerouted: 12,
-                  baseline: "298ms",
-                  current: "608ms",
-                  recovery: "Active",
-                },
-                {
-                  name: "Northline Kitchen #9",
-                  route: "C → E",
-                  rerouted: 8,
-                  baseline: "312ms",
-                  current: "597ms",
-                  recovery: "Active",
-                },
-                {
-                  name: "Northline Café #22",
-                  route: "C → E",
-                  rerouted: 5,
-                  baseline: "285ms",
-                  current: "483ms",
-                  recovery: "Stabilized",
-                },
-                {
-                  name: "Northline Taproom #31",
-                  route: "C → E",
-                  rerouted: 3,
-                  baseline: "301ms",
-                  current: "412ms",
-                  recovery: "Recovered",
-                },
-                {
-                  name: "Northline Express #17",
-                  route: "C → E",
-                  rerouted: 2,
-                  baseline: "276ms",
-                  current: "354ms",
-                  recovery: "Recovered",
-                },
-              ].map((loc) => (
-                <tr
-                  key={loc.name}
-                  className="border-b border-[#EBEEF2] last:border-b-0 hover:bg-white/70 transition-colors"
-                >
-                  <td className="px-4 py-2 text-[12px] font-medium text-[#0F172A]">
-                    {loc.name}
-                  </td>
-                  <td className="px-3 py-2 text-[12px] text-[#5B6475] tabular-nums">
-                    {loc.route}
-                  </td>
-                  <td className="px-3 py-2 text-[12px] text-[#5B6475] tabular-nums text-right">
-                    {loc.rerouted}
-                  </td>
-                  <td className="px-3 py-2 text-[12px] text-[#94A3B8] tabular-nums text-right">
-                    {loc.baseline}
-                  </td>
-                  <td className="px-3 py-2 text-[12px] font-medium text-amber-600 tabular-nums text-right">
-                    {loc.current}
-                  </td>
-                  <td className="px-4 py-2">
-                    <span
-                      className={`inline-flex items-center gap-1 text-[11px] font-medium rounded px-2 py-0.5 ${
-                        loc.recovery === "Recovered"
-                          ? "text-emerald-700 bg-emerald-50 border border-emerald-200"
-                          : loc.recovery === "Stabilized"
-                            ? "text-emerald-600 bg-white border border-emerald-200"
-                            : "text-amber-700 bg-white border border-amber-200"
-                      }`}
-                    >
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full ${
-                          loc.recovery === "Recovered"
-                            ? "bg-emerald-500"
-                            : loc.recovery === "Stabilized"
-                              ? "bg-emerald-400"
-                              : "bg-amber-500"
-                        }`}
-                      />
-                      {loc.recovery}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {/* ===== BOTTOM: Affected Locations Table ===== */}
+        <AffectedLocationsTable />
       </div>
 
       <p className="text-center mt-3 text-[11px] text-[#94A3B8]">
@@ -386,17 +204,327 @@ function HeroProductSurface() {
 }
 
 /**
- * AuthRateChart
+ * IncidentInspector
  *
- * Full-width SVG monitoring chart — the dominant visual anchor.
+ * A focused selected-incident detail panel.
+ * NOT a generic sidebar. NOT a fact list.
  *
- * Design:
- * - Y-axis: 97.0%–99.8% (realistic global auth-rate range)
- * - Subtle volume bars as secondary context
- * - Auth-rate polyline as primary signal
+ * Orbits one event: Rte C auth degradation, 14:20.
+ */
+function IncidentInspector() {
+  return (
+    <>
+      {/* Incident header */}
+      <div className="px-4 pt-3 pb-2.5">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded px-2 py-0.5 mb-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+          Selected incident
+        </span>
+        <h3
+          className="text-[13px] font-bold text-[#0F172A] leading-snug"
+          style={{ letterSpacing: "-0.01em" }}
+        >
+          Rte C — Overflow
+          <br />
+          Auth degradation
+        </h3>
+        <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[#5B6475]">
+          <span>Opened 14:20</span>
+          <span className="text-[#D0D5DD]">|</span>
+          <span className="font-semibold text-rose-600">High severity</span>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-[#EBEEF2]" />
+
+      {/* Current state block */}
+      <div className="px-4 py-3 space-y-2.5">
+        <div>
+          <span className="text-[11px] text-[#94A3B8]">Current auth rate</span>
+          <p className="text-[22px] font-bold text-rose-600 tabular-nums leading-tight">
+            82.1%
+          </p>
+        </div>
+        <div>
+          <span className="text-[11px] text-[#94A3B8]">Latency delta</span>
+          <p className="text-[13px] font-bold text-amber-600 tabular-nums">
+            +526ms
+          </p>
+        </div>
+        <div className="flex gap-4">
+          <div>
+            <span className="text-[11px] text-[#94A3B8]">Txns affected</span>
+            <p className="text-[12px] font-semibold text-[#0F172A] tabular-nums">
+              25
+            </p>
+          </div>
+          <div>
+            <span className="text-[11px] text-[#94A3B8]">In flight</span>
+            <p className="text-[12px] font-semibold text-[#0F172A] tabular-nums">
+              $4,820
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-[#EBEEF2]" />
+
+      {/* Fallback & recovery */}
+      <div className="px-4 py-3 space-y-2.5">
+        <div>
+          <span className="text-[11px] text-[#94A3B8]">Fallback</span>
+          <p className="text-[12px] font-medium text-[#0F172A] leading-snug">
+            Rte C → Rte E engaged
+          </p>
+        </div>
+        <div>
+          <span className="text-[11px] text-[#94A3B8]">Auto-recovery</span>
+          <p className="text-[12px] font-medium text-emerald-600">Active</p>
+        </div>
+        <div>
+          <span className="text-[11px] text-[#94A3B8]">Processor response</span>
+          <p className="text-[11px] text-[#5B6475]">
+            Gateway timeout · 3 attempts sent
+          </p>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-[#EBEEF2]" />
+
+      {/* Recovery timeline stepper */}
+      <div className="px-4 py-3">
+        <span className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-wide">
+          Recovery progress
+        </span>
+        <div className="mt-2.5 space-y-0">
+          {[
+            { label: "Detected", time: "14:20", done: true, active: false },
+            { label: "Fallback engaged", time: "14:21", done: true, active: false },
+            { label: "Rerouting", time: "14:22", done: true, active: true },
+            { label: "Stabilizing", time: "—", done: false, active: false },
+            { label: "Recovered", time: "—", done: false, active: false },
+          ].map((step, i) => (
+            <div key={step.label} className="flex items-start gap-2.5">
+              {/* Connector line + dot */}
+              <div className="flex flex-col items-center shrink-0" style={{ width: 14 }}>
+                {i > 0 && (
+                  <div
+                    className="w-px h-3"
+                    style={{
+                      background:
+                        step.done || (i === 2 && step.active)
+                          ? "#10B981"
+                          : "#E4E8ED",
+                    }}
+                  />
+                )}
+                <span
+                  className={`block rounded-full shrink-0 ${
+                    step.done
+                      ? "bg-emerald-500"
+                      : step.active
+                        ? "bg-amber-500 ring-2 ring-amber-200"
+                        : "bg-[#D0D5DD]"
+                  }`}
+                  style={{ width: 8, height: 8 }}
+                />
+                {i < 4 && (
+                  <div
+                    className="w-px flex-1"
+                    style={{
+                      background:
+                        step.done
+                          ? "#10B981"
+                          : step.active
+                            ? "#E4E8ED"
+                            : "#E4E8ED",
+                    }}
+                  />
+                )}
+              </div>
+              {/* Label */}
+              <div className="pb-2.5">
+                <p
+                  className={`text-[12px] font-medium leading-none ${
+                    step.done
+                      ? "text-[#0F172A]"
+                      : step.active
+                        ? "text-amber-700"
+                        : "text-[#94A3B8]"
+                  }`}
+                >
+                  {step.label}
+                </p>
+                <p className="text-[11px] text-[#94A3B8] mt-0.5">{step.time}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-[#EBEEF2]" />
+
+      {/* Tool actions */}
+      <div className="px-4 py-2.5 flex items-center gap-3">
+        <span className="text-[12px] font-medium text-[#5B6475] cursor-pointer hover:text-[#0F172A] transition-colors">
+          Open incident →
+        </span>
+        <span className="text-[#D0D5DD] text-[11px]">|</span>
+        <span className="text-[12px] font-medium text-[#5B6475] cursor-pointer hover:text-[#0F172A] transition-colors">
+          Review fallback chain →
+        </span>
+      </div>
+    </>
+  );
+}
+
+/**
+ * AffectedLocationsTable
+ *
+ * Full-width operational table below the main workspace.
+ * Shows 5 locations affected by the Rte C degradation,
+ * each at a different recovery stage.
+ */
+function AffectedLocationsTable() {
+  return (
+    <div className="border-t border-[#EBEEF2] bg-[#FAFBFC]">
+      {/* Table header */}
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-[#EBEEF2]">
+        <span className="h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0" />
+        <span className="text-[11px] font-semibold text-[#0F172A]">
+          Locations routed via Rte C — rerouting in progress
+        </span>
+        <span className="text-[11px] text-[#94A3B8]">5 affected</span>
+      </div>
+
+      <table className="w-full text-left">
+        <thead>
+          <tr className="text-[11px] font-medium text-[#5B6475] border-b border-[#EBEEF2]">
+            <th className="px-4 py-2 font-medium w-[28%]">Location</th>
+            <th className="px-3 py-2 font-medium w-[14%]">Route</th>
+            <th className="px-3 py-2 font-medium text-right w-[10%]">
+              Rerouted
+            </th>
+            <th className="px-3 py-2 font-medium text-right w-[12%]">
+              Latency
+            </th>
+            <th className="px-3 py-2 font-medium w-[18%]">Recovery</th>
+            <th className="px-4 py-2 font-medium text-right w-[18%]">
+              Last update
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            {
+              name: "Northline Bistro #4",
+              route: "C → E",
+              rerouted: 12,
+              latency: "608ms",
+              recovery: "Active",
+              recoveryClass: "amber",
+              updated: "14:23",
+            },
+            {
+              name: "Northline Kitchen #9",
+              route: "C → E",
+              rerouted: 8,
+              latency: "597ms",
+              recovery: "Active",
+              recoveryClass: "amber",
+              updated: "14:23",
+            },
+            {
+              name: "Northline Café #22",
+              route: "C → E",
+              rerouted: 5,
+              latency: "483ms",
+              recovery: "Stabilized",
+              recoveryClass: "green-outline",
+              updated: "14:25",
+            },
+            {
+              name: "Northline Taproom #31",
+              route: "C → E",
+              rerouted: 3,
+              latency: "412ms",
+              recovery: "Recovered",
+              recoveryClass: "green",
+              updated: "14:28",
+            },
+            {
+              name: "Northline Express #17",
+              route: "C → E",
+              rerouted: 2,
+              latency: "354ms",
+              recovery: "Recovered",
+              recoveryClass: "green",
+              updated: "14:30",
+            },
+          ].map((loc) => (
+            <tr
+              key={loc.name}
+              className="border-b border-[#EBEEF2] last:border-b-0 hover:bg-white/70 transition-colors"
+            >
+              <td className="px-4 py-2.5 text-[12px] font-medium text-[#0F172A]">
+                {loc.name}
+              </td>
+              <td className="px-3 py-2.5 text-[12px] text-[#5B6475] tabular-nums">
+                {loc.route}
+              </td>
+              <td className="px-3 py-2.5 text-[12px] text-[#5B6475] tabular-nums text-right">
+                {loc.rerouted}
+              </td>
+              <td className="px-3 py-2.5 text-[12px] font-medium text-amber-600 tabular-nums text-right">
+                {loc.latency}
+              </td>
+              <td className="px-3 py-2.5">
+                <span
+                  className={`inline-flex items-center gap-1.5 text-[11px] font-medium rounded px-2 py-0.5 ${
+                    loc.recoveryClass === "green"
+                      ? "text-emerald-700 bg-emerald-50 border border-emerald-200"
+                      : loc.recoveryClass === "green-outline"
+                        ? "text-emerald-600 bg-white border border-emerald-200"
+                        : "text-amber-700 bg-white border border-amber-200"
+                  }`}
+                >
+                  <span
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      loc.recoveryClass === "green"
+                        ? "bg-emerald-500"
+                        : loc.recoveryClass === "green-outline"
+                          ? "bg-emerald-400"
+                          : "bg-amber-500"
+                    }`}
+                  />
+                  {loc.recovery}
+                </span>
+              </td>
+              <td className="px-4 py-2.5 text-[11px] text-[#94A3B8] tabular-nums text-right">
+                {loc.updated}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/**
+ * AuthRateChart — Canonical v1
+ *
+ * SVG monitoring chart. Tight, serious, product-real.
+ *
+ * - Y-axis: 97.0%–99.8%
+ * - One credible dip at 15:00 (97.8%)
+ * - Incident window 14:00–16:00 highlighted
  * - SLA line at 98.5% (dashed amber)
- * - One incident window highlighted at ~14:00–15:30
- * - Clean grid with labeled Y ticks and X hour labels
+ * - Subtle neutral volume bars behind the line
  */
 function AuthRateChart() {
   const data = [
@@ -419,12 +547,11 @@ function AuthRateChart() {
 
   const n = data.length;
 
-  // SVG dimensions
-  const svgW = 800;
-  const svgH = 250;
-  const padL = 48;
-  const padR = 12;
-  const padT = 12;
+  const svgW = 760;
+  const svgH = 260;
+  const padL = 46;
+  const padR = 10;
+  const padT = 14;
   const padB = 28;
   const chartW = svgW - padL - padR;
   const chartH = svgH - padT - padB;
@@ -433,7 +560,6 @@ function AuthRateChart() {
   const yMax = 99.8;
   const yScale = (rate: number) =>
     padT + ((yMax - rate) / (yMax - yMin)) * chartH;
-
   const xScale = (i: number) => padL + (i / (n - 1)) * chartW;
 
   const linePoints = data
@@ -442,23 +568,11 @@ function AuthRateChart() {
 
   const yTicks = [99.5, 99.0, 98.5, 98.0, 97.5, 97.0];
 
-  const xLabels = [
-    { i: 0, label: "06:00" },
-    { i: 2, label: "08:00" },
-    { i: 4, label: "10:00" },
-    { i: 6, label: "12:00" },
-    { i: 8, label: "14:00" },
-    { i: 10, label: "16:00" },
-    { i: 12, label: "18:00" },
-    { i: 14, label: "20:00" },
-  ];
+  const anomalyIdx = 9; // 15:00
 
-  const anomalyIdx = 9; // Index 9 = 15:00, value 97.8%
-
-  // Incident window: data point 8–10 (14:00–16:00)
+  // Incident window: points 8–10 (14:00–16:00)
   const incStartX = xScale(8) - (chartW / n) * 0.5;
   const incEndX = xScale(10) + (chartW / n) * 0.5;
-  const incWidth = incEndX - incStartX;
 
   return (
     <svg
@@ -467,13 +581,12 @@ function AuthRateChart() {
       preserveAspectRatio="xMidYMid meet"
       style={{ overflow: "visible" }}
     >
-      {/* ===== Grid ===== */}
+      {/* Grid */}
       {yTicks.map((tick) => {
         const y = yScale(tick);
         const isSLA = tick === 98.5;
         return (
-          <g key={`grid-${tick}`}>
-            {/* Horizontal grid line */}
+          <g key={`g-${tick}`}>
             <line
               x1={padL}
               y1={y}
@@ -484,7 +597,6 @@ function AuthRateChart() {
               strokeDasharray={isSLA ? "4,3" : undefined}
               opacity={isSLA ? 0.55 : 1}
             />
-            {/* Y-axis label */}
             <text
               x={padL - 8}
               y={y + 4}
@@ -496,7 +608,6 @@ function AuthRateChart() {
             >
               {tick.toFixed(1)}%
             </text>
-            {/* SLA label (right side) */}
             {isSLA && (
               <text
                 x={svgW - padR - 4}
@@ -514,23 +625,23 @@ function AuthRateChart() {
         );
       })}
 
-      {/* ===== Volume bars (secondary, behind line) ===== */}
+      {/* Volume bars */}
       {data.map((d, i) => {
         const barH = (d.v / 100) * chartH * 0.85;
-        const barW = Math.max(2.5, (chartW / n) * 0.5);
+        const barW = Math.max(2, (chartW / n) * 0.45);
         const barX = xScale(i) - barW / 2;
         const barY = padT + chartH - barH;
-        const isIncident = i >= 8 && i <= 10;
+        const isInc = i >= 8 && i <= 10;
         return (
           <rect
-            key={`vol-${i}`}
+            key={`v-${i}`}
             x={barX}
             y={barY}
             width={barW}
             height={Math.max(1, barH)}
             rx={1}
             fill={
-              isIncident
+              isInc
                 ? "rgba(245,158,11,0.10)"
                 : "rgba(203,213,225,0.20)"
             }
@@ -538,73 +649,69 @@ function AuthRateChart() {
         );
       })}
 
-      {/* ===== Incident window highlight ===== */}
+      {/* Incident window highlight */}
       <rect
         x={incStartX}
         y={padT}
-        width={incWidth}
+        width={incEndX - incStartX}
         height={chartH}
         fill="rgba(245,158,11,0.035)"
-        rx={3}
+        rx={2}
+      />
+      <rect
+        x={incStartX}
+        y={padT}
+        width={incEndX - incStartX}
+        height={chartH}
+        fill="none"
+        stroke="rgba(245,158,11,0.25)"
+        strokeWidth={0.75}
+        strokeDasharray="3,3"
+        rx={2}
+        vectorEffect="non-scaling-stroke"
       />
 
-      {/* ===== Auth rate line (primary) ===== */}
+      {/* Auth rate polyline */}
       <polyline
         points={linePoints}
         fill="none"
         stroke="#10B981"
-        strokeWidth="1.6"
+        strokeWidth="1.5"
         vectorEffect="non-scaling-stroke"
         strokeLinejoin="round"
         strokeLinecap="round"
       />
-
-      {/* Subtle glow */}
       <polyline
         points={linePoints}
         fill="none"
-        stroke="rgba(16,185,129,0.12)"
+        stroke="rgba(16,185,129,0.10)"
         strokeWidth="5"
         vectorEffect="non-scaling-stroke"
         strokeLinejoin="round"
         strokeLinecap="round"
       />
 
-      {/* ===== Data dots ===== */}
+      {/* Data dots */}
       {data.map((d, i) => {
         const cx = xScale(i);
         const cy = yScale(d.a);
         const isAnomaly = i === anomalyIdx;
         return (
           <circle
-            key={`dot-${i}`}
+            key={`d-${i}`}
             cx={cx}
             cy={cy}
-            r={isAnomaly ? 3 : 1.5}
+            r={isAnomaly ? 2.5 : 1.3}
             fill={isAnomaly ? "#F59E0B" : "#10B981"}
             stroke="white"
-            strokeWidth={isAnomaly ? 2 : 1}
+            strokeWidth={isAnomaly ? 1.5 : 0.8}
             vectorEffect="non-scaling-stroke"
           />
         );
       })}
 
-      {/* ===== Incident window border (subtle) ===== */}
-      <rect
-        x={incStartX}
-        y={padT}
-        width={incWidth}
-        height={chartH}
-        fill="none"
-        stroke="rgba(245,158,11,0.28)"
-        strokeWidth="0.75"
-        strokeDasharray="3,3"
-        rx={3}
-        vectorEffect="non-scaling-stroke"
-      />
-
-      {/* ===== X-axis labels ===== */}
-      {xLabels.map(({ i, label }) => (
+      {/* X-axis labels */}
+      {[0, 2, 4, 6, 8, 10, 12, 14].map((i) => (
         <text
           key={`x-${i}`}
           x={xScale(i)}
@@ -615,7 +722,7 @@ function AuthRateChart() {
           fontFamily="system-ui, -apple-system, sans-serif"
           fontWeight={500}
         >
-          {label}
+          {data[i].h}:00
         </text>
       ))}
     </svg>
